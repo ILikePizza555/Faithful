@@ -1,0 +1,13 @@
+{
+  "name": "Faithful",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Isaac Avram <avrisaac555@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "gulp": "^4.0.0",
+    "pug": "^2.0.3",
+    "sass": "^1.17.3"
+  }
+}
