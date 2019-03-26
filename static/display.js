@@ -55,9 +55,7 @@ const CardList = Vue.component("card-list", {
             this.activeItem = i;
             setTimeout(() => this.$scrollTo(this.$refs.cardList[i].$el, {}), 300);
 
-            if(this.items[i].background) {
-                this.$root.background = this.items[i].background;
-            }
+            this.$root.setBackground(this.items[i].background);
         }
     },
     template: `
