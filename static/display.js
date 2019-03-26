@@ -110,3 +110,5 @@ const vm = new Vue({
         ]
     }
 })
+
+vm.setBackground(vm.items[0].background);
