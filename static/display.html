@@ -7,7 +7,7 @@
         <script src="./display.js" defer></script>
     </head>
     <body>
-        <div id="vue-app" :style="{'background-color': background.color}">
+        <div id="vue-app" :style="{'background-color': background.color, 'color': fontColor}">
             <div class="x-center">
                 <card-list v-bind:items="items"></card-list>
             </div>
