@@ -8,6 +8,15 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+#vue-app {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    transition: background-color 0.5s ease 0.3s;
+}
+
 .x-center {
     max-width: 768px;
     margin: 0vh auto;

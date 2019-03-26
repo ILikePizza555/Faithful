@@ -28,6 +28,10 @@ const CardList = Vue.component("card-list", {
 
             this.activeItem = i;
             setTimeout(() => this.$scrollTo(this.$refs.cardList[i].$el, {}), 300);
+
+            if(this.items[i].background) {
+                this.$root.background = this.items[i].background;
+            }
         }
     },
     template: `
@@ -46,18 +50,24 @@ const vm = new Vue({
     el: "#vue-app",
 
     data: {
+        "background": {
+            "color": "white"
+        },
         "items": [
             {
                 id: 0,
-                title: "🚿 Take a shower"
+                title: "🚿 Take a shower",
+                background: { color: "aliceblue"}
             },
             {
                 id: 1,
-                title: "💊 Take medications"
+                title: "💊 Take medications",
+                background: { color: "#fff6f0"}
             },
             {
                 id: 2,
-                title: "👗 Wear something pretty~"
+                title: "👗 Wear something pretty~",
+                background: {color: "#ff4f4f"}
             }
         ]
     }
