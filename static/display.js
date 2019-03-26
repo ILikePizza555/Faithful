@@ -36,7 +36,7 @@ const CardList = Vue.component("card-list", {
         }
     },
     template: `
-    <main class="card-list">
+    <main v-on:click="move" class="card-list">
         <card-component v-for="i in items" 
                         :item="i"
                         :key="i.id"
