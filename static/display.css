@@ -18,12 +18,13 @@ body {
     width: 100%;
     height: 80vh;
     padding-top: 20vh;
-    opacity: 0.3;
-    transition: opacity 0.5s;
+
+    opacity: 1;
 }
 
-.card.active {
-    opacity: 1.0 !important;
-    transition: opacity 0.5s;
+.card.done {
+    opacity: 0.3 !important;
+
+    transition: opacity 0.3s;
 }
 

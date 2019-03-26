@@ -4,13 +4,8 @@ const CardComponent = {
         "item": Object,
         "activeItem": Number
     },
-    computed: {
-        "isActive": function() {
-            return this.activeItem === this.item.id;
-        }
-    },
     template: `
-    <section v-bind:class="{card: true, active: isActive}">
+    <section class="card" :class="activeItem > item.id && 'done'">
         <h1>{{ item.title }}</h1>
         <p v-if="item.desc">{{ item.desc }}</p>
     </section>
