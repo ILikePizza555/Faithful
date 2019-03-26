@@ -17,7 +17,7 @@ function colorFromHex(hexCode) {
         return r + r + g + g + b + b;
     });
 
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexCode);
     return result ? new Color(
         parseInt(result[1], 16),
         parseInt(result[2], 16),
@@ -76,15 +76,26 @@ const vm = new Vue({
         "setBackground": function(background) {
             const bg = background || {"color": white};
 
+            this.background = bg;
+        }
+    },
+    computed: {
+        "fontColor": function() {
+            if(colorFromHex(this.background.color).percievedBrightness > 150) {
+                return "#000";
+            }
+            return "#fff";
+        }
+    },
     data: {
         "background": {
-            "color": "white"
+            "color": "#fff"
         },
         "items": [
             {
                 id: 0,
                 title: "🚿 Take a shower",
-                background: { color: "aliceblue"}
+                background: { color: "#f0f8ff"}
             },
             {
                 id: 1,
