@@ -28,8 +28,11 @@ const CardList = Vue.component("card-list", {
         "card-component": CardComponent
     },
     methods: {
-        "next": function() {
-            this.$scrollTo()
+        "move": function(itemNumber) {
+            const i = typeof(itemNumber) === "number" ? itemNumber : this.activeItem + 1;
+
+            this.activeItem = i;
+            this.$scrollTo(this.$refs.cardList[i].$el);
         }
     },
     template: `
