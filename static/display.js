@@ -6,14 +6,14 @@ const CardComponent = {
     },
     computed: {
         "isActive": function() {
-            return this.activeItem === this.item.key;
+            return this.activeItem === this.item.id;
         }
     },
     template: `
-    <li v-bind:class="{card: true, active: isActive}">
+    <section v-bind:class="{card: true, active: isActive}">
         <h1>{{ item.title }}</h1>
         <p v-if="item.desc">{{ item.desc }}</p>
-    </li>
+    </section>
     `
 };
 
@@ -27,20 +27,40 @@ const CardList = Vue.component("card-list", {
     components: {
         "card-component": CardComponent
     },
+    methods: {
+        "next": function() {
+            this.$scrollTo()
+        }
+    },
     template: `
-    <ul class="card-list">
+    <main class="card-list">
         <card-component v-for="i in items" 
-                        v-bind:item="i"
-                        :key="i.key"
-                        v-bind:activeItem="activeItem">
+                        :item="i"
+                        :key="i.id"
+                        :activeItem="activeItem"
+                        ref="cardList">
         </card-component>
-    </ul>
+    </main>
     `
 });
 
 const vm = new Vue({
     el: "#vue-app",
+
     data: {
-        "items": []
+        "items": [
+            {
+                id: 0,
+                title: "Item 1"
+            },
+            {
+                id: 1,
+                title: "Item 2"
+            },
+            {
+                id: 2,
+                title: "Item 3"
+            }
+        ]
     }
 })
