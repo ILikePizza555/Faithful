@@ -74,6 +74,9 @@ const CardList = Vue.component("card-list", {
 
 const vm = new Vue({
     el: "#vue-app",
+    methods: {
+        "setBackground": function(background) {
+            const bg = background || {"color": white};
 
     data: {
         "background": {
