@@ -49,15 +49,15 @@ const vm = new Vue({
         "items": [
             {
                 id: 0,
-                title: "Item 1"
+                title: "🚿 Take a shower"
             },
             {
                 id: 1,
-                title: "Item 2"
+                title: "💊 Take medications"
             },
             {
                 id: 2,
-                title: "Item 3"
+                title: "👗 Wear something pretty~"
             }
         ]
     }
