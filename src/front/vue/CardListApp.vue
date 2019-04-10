@@ -3,6 +3,7 @@
         <div class="center">
             <card-list :items="items"></card-list>
         </div>
+    </div>
 </template>
 
 <style lang="scss">
