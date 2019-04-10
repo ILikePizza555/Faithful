@@ -10,6 +10,7 @@
 
 <script>
 import Card from "./Card.vue";
+import "vue-scrollto";
 
 export default {
     data: function () {
