@@ -15,6 +15,7 @@
     "sass-loader": "^7.1.0",
     "ts-loader": "^5.3.3",
     "typescript": "^3.3.4000",
+    "vue": "^2.6.10",
     "vue-loader": "^15.7.0",
     "vue-scrollto": "^2.15.0",
     "vue-template-compiler": "^2.6.10",
@@ -22,7 +23,6 @@
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"
   },
-
   "scripts": {
     "start:front-dev": "webpack-dev-server --config ./src/front/webpack.config.js"
   }
