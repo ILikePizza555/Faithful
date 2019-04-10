@@ -9,6 +9,7 @@
     "css-loader": "^2.1.1",
     "eslint": "^5.15.3",
     "gulp": "^4.0.0",
+    "html-loader": "^0.5.5",
     "pug": "^2.0.3",
     "sass": "^1.17.3",
     "sass-loader": "^7.1.0",
