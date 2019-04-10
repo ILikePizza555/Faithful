@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        
+        <style type="style/css">
+            @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+            html,
+            body {
+                margin: 0px;
+                padding: 0px; 
+
+                font-family: 'Source Sans Pro', sans-serif;
+            }
+        </style>
+
+        <script defer>
+            import Vue from "vue";
+            import CardListApp from "./vue/CardListApp.vue";
+
+            const vm = new Vue({
+                components: {
+                    "card-list-app": CardListApp
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <card-list-app></card-list-app>
+    </body>
+</html>
