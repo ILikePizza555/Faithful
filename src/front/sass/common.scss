@@ -1,0 +1,13 @@
+@import "./variables.scss";
+
+.center {
+    max-width: $content-width;
+    margin: 0vh auto;
+}
+
+.full-page-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
