@@ -1,6 +1,8 @@
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
+    context: __dirname,
+    entry: "index.html",
     resolve: {
         extensions: ['.ts', '.js']
     },
@@ -30,9 +32,9 @@ module.exports = {
                 test: /\.(html)$/,
                 use: "html-loader"
             }
-        ],
-        plugins: [
-            new VueLoaderPlugin(),
         ]
-    }
+    },
+    plugins: [
+        new VueLoaderPlugin(),
+    ]
 }
