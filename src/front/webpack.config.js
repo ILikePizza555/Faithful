@@ -1,4 +1,5 @@
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require("path");
 
 module.exports = {
@@ -37,6 +38,9 @@ module.exports = {
     },
     plugins: [
         new VueLoaderPlugin(),
+        new HtmlWebpackPlugin({
+            template: path.normalize(path.join(__dirname, "html", "index.html"))
+        })
     ],
     output: {
         filename: "bundle.js",
