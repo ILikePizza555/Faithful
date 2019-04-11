@@ -29,7 +29,7 @@ export default {
             this.activeItem = i;
             setTimeout(() => this.$scrollTo(this.$refs.cardList[i].$el, {}), 300);
 
-            this.$root.setBackground(this.items[i].background);
+            this.$emit("itemUpdate", i);
         }
     }
 }
