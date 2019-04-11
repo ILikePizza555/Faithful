@@ -15,12 +15,13 @@
 }
 </style>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
 import CardList from "./CardList.vue";
 
-export default {
+export default Vue.extend({
     components: {
         "card-list": CardList
     }
-}
+});
 </script>
