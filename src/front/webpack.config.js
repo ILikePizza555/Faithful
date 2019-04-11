@@ -47,7 +47,7 @@ module.exports = {
                 {
                     name: "vue",
                     var: "Vue",
-                    path: "dist/vue.runtime.min.js"
+                    path: "dist/vue.common.dev.js"
                 }
             ]
         })
