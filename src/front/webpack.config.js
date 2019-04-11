@@ -1,5 +1,6 @@
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackCdnPlugin = require('webpack-cdn-plugin');
 const path = require("path");
 
 module.exports = {
@@ -40,6 +41,15 @@ module.exports = {
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             template: path.normalize(path.join(__dirname, "html", "index.html"))
+        }),
+        new WebpackCdnPlugin({
+            modules: [
+                {
+                    name: "vue",
+                    var: "Vue",
+                    path: "dist/vue.runtime.min.js"
+                }
+            ]
         })
     ],
     output: {
