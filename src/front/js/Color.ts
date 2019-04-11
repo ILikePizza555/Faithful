@@ -15,6 +15,17 @@ export class Color {
         this._data = new Uint8ClampedArray([red, green, blue, alpha])
     }
 
+    public get hex6(): string {
+        return "#" +
+            this._data[0].toString(16) +
+            this._data[1].toString(16) +
+            this._data[2].toString(16)
+    }
+
+    public get hex8(): string {
+        return this.hex6 + this._data[3].toString(16);
+    }
+
     public get rgba(): RGBAValues {
         return {
             red: this._data[0],
