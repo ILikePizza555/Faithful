@@ -1,5 +1,5 @@
 <template>
-    <div id="app-card-list" class="full-width-container">
+    <div id="app-card-list" class="full-page-container">
         <div class="center">
             <card-list :items="items"></card-list>
         </div>
