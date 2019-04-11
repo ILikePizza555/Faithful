@@ -5,5 +5,6 @@ const vm = new Vue({
     el: "#mount-point",
     components: {
         "card-list-app": CardListApp
-    }
+    },
+    template: "<card-list-app></card-list-app>"
 });
