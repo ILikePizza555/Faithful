@@ -35,6 +35,11 @@ export default Vue.extend({
         items: Array as Prop<Item[]>,
         initialBackground: Object as Prop<Background>
     },
+    methods: {
+        itemUpdateHandler: function(itemIndex: number) {
+            this.background = this.items[itemIndex].background;
+        }
+    },
     computed: {
         fontColor: function(): string {
             const bgObj: Background = this.background;
