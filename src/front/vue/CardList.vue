@@ -16,14 +16,13 @@ import "vue-scrollto";
 // In the template we have a cardList ref, which is an array of Card
 // we defines a type here that extends Vue with a $refs property so that Typescript
 // can properly match the type.
-type VueComponent = Vue.VueConstructor<Vue &
-{
+type CardListComponent = Vue.VueConstructor<{
     $refs: {
         cardList: Vue[]
     }
-}>
+} & Vue>;
 
-export default (Vue as VueComponent).extend({
+export default (Vue as CardListComponent).extend({
     data: function () {
         return {
             "activeItem": 0
