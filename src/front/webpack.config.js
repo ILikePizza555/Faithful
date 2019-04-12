@@ -9,7 +9,10 @@ module.exports = {
     context: __dirname,
     entry: path.join(__dirname, "js", "index.js"),
     resolve: {
-        extensions: [".ts", ".js", ".vue"]
+        extensions: [".ts", ".js", ".vue"],
+        alias: {
+            "vue$": "vue/dist/vue.esm.js"
+        }
     },
     module: {
         rules: [
