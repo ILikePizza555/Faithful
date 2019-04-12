@@ -8,11 +8,12 @@
     </main>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import Card from "./Card.vue";
 import "vue-scrollto";
 
-export default {
+export default Vue.extend({
     data: function () {
         return {
             "activeItem": 0
@@ -32,5 +33,5 @@ export default {
             this.$emit("itemUpdate", i);
         }
     }
-}
+});
 </script>
