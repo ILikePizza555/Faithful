@@ -17,10 +17,34 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import {Background} from "../js/Models";
+import {Prop} from "vue/types/options";
+import {Background, Item} from "../js/Models";
 import CardList from "./CardList.vue";
 
+type DataType = {
+    background: Background
+}
+
 export default Vue.extend({
+    data: function(): DataType {
+        return {
+            background: this.initialBackground
+        }
+    },
+    props: {
+        items: Array as Prop<Item[]>,
+        initialBackground: Object as Prop<Background>
+    },
+    computed: {
+        fontColor: function(): string {
+            const bgObj: Background = this.background;
+
+            if(bgObj.color.luminance > (150 / 255)) {
+                return "#000000";
+            }
+            return "#FFFFFF";
+        }
+    },
     components: {
         "card-list": CardList
     }
