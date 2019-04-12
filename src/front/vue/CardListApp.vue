@@ -17,6 +17,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import {Background} from "../js/Models";
 import CardList from "./CardList.vue";
 
 export default Vue.extend({
