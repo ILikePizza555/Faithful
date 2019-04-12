@@ -10,7 +10,9 @@
 
 <script lang="ts">
 import Vue from "vue";
+import {Prop} from "vue/types/options";
 import Card from "./Card.vue";
+import {Item} from "../js/Models";
 import "vue-scrollto";
 
 // In the template we have a cardList ref, which is an array of Card
@@ -28,7 +30,9 @@ export default (Vue as CardListComponent).extend({
             "activeItem": 0
         };
     },
-    props: ["items"],
+    props: {
+        items: Array as Prop<Item[]>
+    },
     components: {
         "card": Card
     },
