@@ -13,7 +13,14 @@ import Vue from "vue";
 import Card from "./Card.vue";
 import "vue-scrollto";
 
-export default Vue.extend({
+type VueComponent = Vue.VueConstructor<Vue &
+{
+    $refs: {
+        cardList: Vue[]
+    }
+}>
+
+export default (Vue as VueComponent).extend({
     data: function () {
         return {
             "activeItem": 0
@@ -24,11 +31,11 @@ export default Vue.extend({
         "card": Card
     },
     methods: {
-        "move": function(itemNumber) {
-            const i = typeof(itemNumber) === "number" ? itemNumber : this.activeItem + 1;
+        "move": function(itemNumber: number) {
+            const i: number = typeof(itemNumber) === "number" ? itemNumber : this.activeItem + 1;
 
             this.activeItem = i;
-            setTimeout(() => this.$scrollTo(this.$refs.cardList[i].$el, {}), 300);
+            setTimeout(() => this.$scrollTo(this.$refs.cardList[i].$el as HTMLElement), 300);
 
             this.$emit("itemUpdate", i);
         }
