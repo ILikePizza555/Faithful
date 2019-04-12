@@ -43,7 +43,7 @@ export default (Vue as CardListComponent).extend({
             this.activeItem = i;
             setTimeout(() => this.$scrollTo(this.$refs.cardList[i].$el as HTMLElement), 300);
 
-            this.$emit("itemUpdate", i);
+            this.$emit("item-update", i);
         }
     }
 });
