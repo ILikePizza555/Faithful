@@ -5,6 +5,6 @@
         "strict": true,
         "module": "es2015",
         "moduleResolution": "node",
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
     }
 }
