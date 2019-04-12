@@ -68,12 +68,12 @@ export function fromHex(hexcode: string): Color {
     }
 
     // Split the hex string into groups of 2
-    let hexString: string[] = null;
+    let hexString: string[] = [];
     if(matches[1].length == 3) {
         hexString = [
-            matches[1].charAt(0).repeat(2), 
-            matches[1].charAt(1).repeat(2),
-            matches[1].charAt(2).repeat(2),
+            matches[1].charAt(0) + matches[1].charAt(0), 
+            matches[1].charAt(1) + matches[1].charAt(1),
+            matches[1].charAt(2) + matches[1].charAt(2),
             "ff"
         ];
     } else if (matches[1].length == 6) {
@@ -82,5 +82,5 @@ export function fromHex(hexcode: string): Color {
         hexString = chunkString(matches[1], 2);
     }
 
-    return new Color(...hexString.map(s => Number.parseInt(s, 16)));
+    return new Color(...hexString.map(s => parseInt(s, 16)));
 }
