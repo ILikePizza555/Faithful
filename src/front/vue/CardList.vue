@@ -13,6 +13,9 @@ import Vue from "vue";
 import Card from "./Card.vue";
 import "vue-scrollto";
 
+// In the template we have a cardList ref, which is an array of Card
+// we defines a type here that extends Vue with a $refs property so that Typescript
+// can properly match the type.
 type VueComponent = Vue.VueConstructor<Vue &
 {
     $refs: {
