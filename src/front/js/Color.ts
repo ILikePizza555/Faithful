@@ -54,7 +54,7 @@ export class Color {
  * @param n 
  */
 function chunkString(str: string, n: number): string[] {
-    const r = new RegExp(`(.{${n}}`, "g");
+    const r = new RegExp(`(.{${n}})`, "g");
     return str.split(r).filter(o=>o);
 }
 
