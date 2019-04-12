@@ -1,10 +1,11 @@
 <template>
     <div id="app-card-list" 
          class="full-page-container"
-         v-on:item-update="itemUpdateHandler"
          :style="{backgroundColor: background.color.hex6, color: fontColor}">
         <div class="center">
-            <card-list :items="items"></card-list>
+            <card-list
+                v-on:item-update="itemUpdateHandler($event)"
+                :items="items"></card-list>
         </div>
     </div>
 </template>
