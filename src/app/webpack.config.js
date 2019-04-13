@@ -45,7 +45,7 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
-            template: path.normalize(path.join(__dirname, "html", "index.html"))
+            template: path.normalize(path.join(__dirname, "html", "template.html"))
         }),
         new WebpackCdnPlugin({
             modules: [
