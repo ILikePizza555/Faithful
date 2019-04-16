@@ -1,8 +1,7 @@
 @import "../../../sass/common.scss";
 
 .index-header {
-    background-color: #ffd9b8;
-    color: #403a2e;
+    background-image: linear-gradient(#ffd9b8, $page-bg-color);
 
     align-items: center;
     height: 60vh;
