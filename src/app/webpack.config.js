@@ -59,7 +59,7 @@ module.exports = {
     ],
     output: {
         filename: "bundle.js",
-        path: path.join(__dirname, "dist")
+        path: path.normalize(path.join(__dirname, "..", "..", "dist"))
     },
     devtool: "inline-cheap-source-map"
 }
