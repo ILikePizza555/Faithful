@@ -8,6 +8,26 @@
         <link href="{{ url_for('static', filename='css/index.scss.css') }}" rel="stylesheet" type="text/css">
     
         <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script>
+            function onSignIn(googleUser) {
+                const id_token = googleUser.getAuthResponse().id_token;
+                
+                fetch("/tokensignin", {
+                    method: "POST",
+                    cache: "no-cache",
+                    credentials: "same-origin",
+                    body: id_token
+                }).then(response => {
+                    if(!response.ok) {
+                        const e = new Error("Got invalid response from server.")
+                        e.response = response;
+                        throw e;
+                    }
+
+                    window.location.pathname = "/app";
+                });
+            }
+        </script>
     </head>
     <body>
         <header class="index-header block-container">
@@ -16,6 +36,7 @@
                 <p>Build habits and manage your life with Faithful.</p>
             </div>
             <div class="login-block">
+                <p>Sign in with Google.</p>
                 <div class="g-signin2" data-onsuccess="onSignIn"></div>
             </div>
         </header>
