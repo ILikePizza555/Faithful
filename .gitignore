@@ -7,3 +7,5 @@ yarn.lock
 yarn-error.log
 coverage
 dist
+
+src/server/server_conf.json
