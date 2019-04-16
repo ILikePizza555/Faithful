@@ -1,5 +1,15 @@
 @import "./variables.scss";
 
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+
+    font-family: "Fira Sans", Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .center {
     max-width: $content-width;
     margin: 0vh auto;
@@ -10,4 +20,14 @@
     top: 0;
     left: 0;
     width: 100%;
+}
+
+.block-container {
+    display: flex;
+}
+
+@mixin block($bg_color: none, $w: 768px) {
+    border-radius: 13px;
+    max-width: $w;
+    background-color: $bg_color;
 }

@@ -1,0 +1,14 @@
+@import "../../../sass/common.scss";
+
+.index-header {
+    background-color: #ffd9b8;
+    color: #403a2e;
+}
+
+.info-block {
+    @include block();
+}
+
+.login-block {
+    @include block(white);
+}

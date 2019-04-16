@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="UTF-8">
+        <meta name="google-signin-client_id" content="{{google_clid}}.apps.googleusercontent.com">
+
         <title>Faithful</title>
         <link href="{{ url_for('static', filename='css/index.scss.css') }}" rel="stylesheet" type="text/css">
     
         <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
     <body>
-
+        <header class="index-header block-container">
+            <div class="info-block">
+                <h1>It's time to get things done.</h1>
+                <p>Build habits and manage your life with Faithful.</p>
+            </div>
+            <div class="login-block">
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            </div>
+        </header>
     </body>
 </html>
