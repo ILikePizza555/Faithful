@@ -8,6 +8,7 @@ body {
     padding: 0px;
 
     font-family: "Fira Sans", Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
 }
 
 .center {
@@ -26,8 +27,12 @@ body {
     display: flex;
 }
 
-@mixin block($bg_color: none, $w: 768px) {
-    border-radius: 13px;
+@mixin block($bg_color: none, $w: 768px, $r: 13px, $padding: 13px, $margin: 8px) {
+    border-radius: $r;
     max-width: $w;
+
+    padding: $padding;
+    margin: $margin;
+
     background-color: $bg_color;
 }
