@@ -35,4 +35,8 @@ body {
     margin: $margin;
 
     background-color: $bg_color;
+
+    & > *:first-child {
+        margin-top: 0;
+    }
 }
