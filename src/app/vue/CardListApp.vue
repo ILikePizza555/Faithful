@@ -11,7 +11,7 @@
 </template>
 
 <style lang="scss">
-@import "../sass/common";
+@import "../../sass/common";
 
 #app-card-list {
      transition: background-color 1s ease 0.3s, 
