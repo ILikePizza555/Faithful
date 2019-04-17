@@ -3,16 +3,19 @@
 .index-header {
     background-image: linear-gradient(#ffd9b8, $page-bg-color);
 
-    align-items: center;
     height: 60vh;
+
+    padding: 8px;
+
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .info-block {
-    @include block($margin: (8px 8px 8px 8%));
+    @include block();
 }
 
 .login-block {
-    @include block(white, $margin: (8px 33% 8px auto));
-
+    @include block(white);
     box-shadow: 0 4px 8px -2px;
 }

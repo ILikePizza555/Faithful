@@ -30,9 +30,8 @@ body {
     display: flex;
 }
 
-@mixin block($bg_color: none, $w: 768px, $r: 13px, $padding: 13px, $margin: 8px) {
+@mixin block($bg_color: none, $r: 13px, $padding: 13px, $margin: 8px auto) {
     border-radius: $r;
-    max-width: $w;
 
     padding: $padding;
     margin: $margin;
