@@ -2,31 +2,22 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="google-signin-client_id" content="{{google_clid}}">
 
         <title>Faithful</title>
         <link href="{{ url_for('static', filename='css/index.scss.css') }}" rel="stylesheet" type="text/css">
     
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
         <script>
-            function onSignIn(googleUser) {
-                const id_token = googleUser.getAuthResponse().id_token;
-                
-                fetch("/tokensignin", {
-                    method: "POST",
-                    cache: "no-cache",
-                    credentials: "same-origin",
-                    body: id_token
-                }).then(response => {
-                    if(!response.ok) {
-                        const e = new Error("Got invalid response from server.")
-                        e.response = response;
-                        throw e;
-                    }
+            const uiConfig = {
+                signInSuccessUrl: "{{ url_for('.oauth2signin') }}",
+                signInOptions: [
+                    firebase.auth.GoogleAuthProvider.PROVIDER_ID
+                ]
+            };
 
-                    window.location.pathname = "/app";
-                });
-            }
+            const ui = new firebase.auth.AuthUI(firebase.auth());
+            ui.start('#firebase-auth-container', uiConfig);
         </script>
     </head>
     <body>
@@ -36,8 +27,8 @@
                 <p>Build habits and manage your life with Faithful.</p>
             </div>
             <div class="login-block">
-                <p>Sign in with Google.</p>
-                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <p>Sign in.</p>
+                <div id="firebaseui-auth-container"></div>
             </div>
         </header>
     </body>
