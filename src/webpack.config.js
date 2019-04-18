@@ -53,7 +53,8 @@ module.exports = {
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             filename: "app.html",
-            template: path.normalize(path.join(__dirname, "html", "app.hbs")),
+            cdnModule: "vue",
+            template: path.resolve("src", "html", "app.hbs"),
             chunks: ["app"],
             title: "Faithful",
             meta: {
@@ -63,7 +64,8 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: "index.html",
-            template: path.normalize(path.join(__dirname, "html", "index.hbs")),
+            cdnModule: false,
+            template: path.resolve("src", "html", "index.hbs"),
             chunks: ["index"],
             title: "Faithful",
             meta: {
@@ -72,18 +74,16 @@ module.exports = {
             }
         }),
         new WebpackCdnPlugin({
-            modules: [
-                {
-                    name: "vue",
-                    var: "Vue",
-                    path: "dist/vue.common.dev.js"
-                }
-            ]
+            modules: {
+                vue: [
+                    { name: "vue", var: "Vue", path: "dist/vue.common.dev.js"}
+                ]
+            }
         })
     ],
     output: {
         filename: "[name].js",
-        path: path.normalize(path.join(__dirname, "..", "..", "dist"))
+        path: path.normalize(path.join(__dirname, "..", "dist"))
     },
     devtool: "inline-cheap-source-map"
 }
