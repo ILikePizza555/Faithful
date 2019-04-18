@@ -6,7 +6,7 @@
 </template>
 
 <style lang="scss">
-@import '../../sass/variables';
+@import '../sass/variables';
 
 .card {
     display: block;
