@@ -52,7 +52,8 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
-            template: path.normalize(path.join(__dirname, "html", "template.hbs")),
+            filename: "app.html",
+            template: path.normalize(path.join(__dirname, "html", "app.hbs")),
             chunks: ["app"],
             title: "Faithful",
             meta: {
@@ -61,6 +62,7 @@ module.exports = {
             }
         }),
         new HtmlWebpackPlugin({
+            filename: "index.html",
             template: path.normalize(path.join(__dirname, "html", "index.hbs")),
             chunks: ["index"],
             title: "Faithful",
