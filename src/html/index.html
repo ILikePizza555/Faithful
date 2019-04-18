@@ -12,16 +12,6 @@
         <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
         <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
         <script type="text/javascript">
-            const config = {
-                apiKey: "AIzaSyDDCVGzxZb1cM-Be3sRtbGFdhRP2-AHMUE",
-                authDomain: "faithful.firebaseapp.com",
-                databaseURL: "https://faithful.firebaseio.com",
-                projectId: "faithful",
-                storageBucket: "faithful.appspot.com",
-                messagingSenderId: "32800656929"
-            };
-            firebase.initializeApp(config);
-
             const uiConfig = {
                 signInSuccessUrl: "{{ url_for('.signin_route', _external=True) }}",
                 signInOptions: [
