@@ -7,7 +7,9 @@ const path = require("path");
 
 module.exports = {
     context: __dirname,
-    entry: path.join(__dirname, "js", "index.js"),
+    entry: {
+        app: path.join(__dirname, "js", "app.js"),
+    },
     resolve: {
         extensions: [".ts", ".js", ".vue"],
         alias: {
