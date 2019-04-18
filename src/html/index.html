@@ -5,23 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Faithful</title>
-        <link href="{{ url_for('static', filename='css/index.scss.css') }}" rel="stylesheet" type="text/css">
     
-        <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
-        <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
         <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
-        <script type="text/javascript">
-            const uiConfig = {
-                signInSuccessUrl: "{{ url_for('.signin_route', _external=True) }}",
-                signInOptions: [
-                    firebase.auth.GoogleAuthProvider.PROVIDER_ID
-                ]
-            };
-
-            const ui = new firebaseui.auth.AuthUI(firebase.auth());
-            ui.start('#firebaseui-auth-container', uiConfig);
-        </script>
     </head>
     <body>
         <header class="index-header block-container">

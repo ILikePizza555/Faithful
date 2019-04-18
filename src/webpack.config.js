@@ -9,6 +9,7 @@ module.exports = {
     context: __dirname,
     entry: {
         app: path.join(__dirname, "js", "app.js"),
+        index: path.join(__dirname, "js", "index.js")
     },
     resolve: {
         extensions: [".ts", ".js", ".vue"],
