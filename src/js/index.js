@@ -1,4 +1,3 @@
-import "../html/index.html";
 import "../sass/index.scss";
 
 import {firebase} from "./init_firebase";

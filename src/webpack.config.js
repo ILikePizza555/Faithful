@@ -53,6 +53,16 @@ module.exports = {
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             template: path.normalize(path.join(__dirname, "html", "template.hbs")),
+            chunks: ["app"],
+            title: "Faithful",
+            meta: {
+                "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
+                "charset": "utf-8"
+            }
+        }),
+        new HtmlWebpackPlugin({
+            template: path.normalize(path.join(__dirname, "html", "index.hbs")),
+            chunks: ["index"],
             title: "Faithful",
             meta: {
                 "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
@@ -70,7 +80,7 @@ module.exports = {
         })
     ],
     output: {
-        filename: "bundle.js",
+        filename: "[name].js",
         path: path.normalize(path.join(__dirname, "..", "..", "dist"))
     },
     devtool: "inline-cheap-source-map"

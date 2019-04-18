@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {{#if htmlWebpackPlugin.options.meta}}
+            {{#each htmlWebpackPlugin.options.meta as |meta_item meta_key| }}
+                {{#each meta_item}}
+                    <meta name="{{@key}}" content="{{this}}">
+                {{/each}}
+            {{/each}}
+        {{/if}}
 
-        <title>Faithful</title>
+        <title>{{htmlWebpackPlugin.options.title}}</title>
     
         <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
     </head>
