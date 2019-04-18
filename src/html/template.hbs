@@ -1,7 +1,7 @@
 <html lang="en">
     <head>    
-        {{#if (Array.isArray(htmlWebpackPlugin.options.meta))}}
-            {{#each htmlWebpackPlugin.options.meta as |meta_item, meta_key| }}
+        {{#if htmlWebpackPlugin.options.meta}}
+            {{#each htmlWebpackPlugin.options.meta as |meta_item meta_key| }}
                 {{#each meta_item}}
                     <meta name="{{@key}}" content="{{this}}">
                 {{/each}}

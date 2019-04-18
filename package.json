@@ -60,7 +60,7 @@
     }
   },
   "scripts": {
-    "start:front-dev": "webpack-dev-server --config ./src/front/webpack.config.js"
+    "start:front-dev": "webpack-dev-server --config ./src/webpack.config.js"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^1.6.0",
