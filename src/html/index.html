@@ -23,7 +23,7 @@
             firebase.initializeApp(config);
 
             const uiConfig = {
-                signInSuccessUrl: "{{ url_for('.signin_route') }}",
+                signInSuccessUrl: "{{ url_for('.signin_route', _external=True) }}",
                 signInOptions: [
                     firebase.auth.GoogleAuthProvider.PROVIDER_ID
                 ]
