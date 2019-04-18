@@ -36,6 +36,10 @@ module.exports = {
                     "sass-loader"
                 ]
             },
+            { 
+                test: /\.hbs$/, 
+                loader: "handlebars-loader" 
+            },
             {
                 test: /\.(html)$/,
                 use: "html-loader"
@@ -45,7 +49,8 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
-            template: path.normalize(path.join(__dirname, "html", "template.html")),
+            template: path.normalize(path.join(__dirname, "html", "template.hbs")),
+            title: "Faithful",
             meta: {
                 "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
                 "charset": "utf-8"
