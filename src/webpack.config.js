@@ -39,8 +39,8 @@ module.exports = {
                 ]
             },
             { 
-                test: /\.hbs$/, 
-                loader: "handlebars-loader" 
+                test: /\.pug$/, 
+                loader: "pug-loader"
             },
             {
                 test: /\.(html)$/,
@@ -52,7 +52,7 @@ module.exports = {
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             filename: "app.html",
-            template: path.resolve("src", "html", "app.hbs"),
+            template: path.resolve("src", "html", "app.pug"),
             chunks: ["app"],
             title: "Faithful",
             scripts: [
@@ -68,7 +68,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: "index.html",
-            template: path.resolve("src", "html", "index.hbs"),
+            template: path.resolve("src", "html", "index.pug"),
             chunks: ["index"],
             title: "Faithful",
             styles: [
