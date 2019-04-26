@@ -9,6 +9,18 @@
             {{/each}}
         {{/if}}
 
+        {{#if htmlWebpackPlugin.options.styles}}
+            {{#each htmlWebpackPlugin.options.styles}}
+                <link type="text/css" rel="stylesheet" href="{{this}}">
+            {{/each}}
+        {{/if}}
+
+        {{#if htmlWebpackPlugin.options.scripts}}
+            {{#each htmlWebpackPlugin.options.scripts}}
+                <script type="text/javascript" src="{{this}}"></script>
+            {{/each}}
+        {{/if}}
+
         <title>{{htmlWebpackPlugin.options.title}}</title>
     </head>
     <body>

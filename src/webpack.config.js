@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const WebpackCdnPlugin = require("webpack-cdn-plugin");
 const path = require("path");
 
 module.exports = {
@@ -53,10 +52,15 @@ module.exports = {
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             filename: "app.html",
-            cdnModule: "vue",
             template: path.resolve("src", "html", "app.hbs"),
             chunks: ["app"],
             title: "Faithful",
+            scripts: [
+                "https://cdn.jsdelivr.net/npm/vue/dist/vue.js",
+                "https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js",
+                "https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js",
+                "https://www.gstatic.com/firebasejs/5.10.1/firebase-firestore.js"
+            ],
             meta: {
                 "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
                 "charset": "utf-8"
@@ -64,23 +68,29 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: "index.html",
-            cdnModule: false,
             template: path.resolve("src", "html", "index.hbs"),
             chunks: ["index"],
             title: "Faithful",
+            styles: [
+                "https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"
+            ],
+            scripts: [
+                "https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js",
+                "https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js",
+                "https://www.gstatic.com/firebasejs/5.10.1/firebase-firestore.js",
+                "https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"
+            ],
             meta: {
                 "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
                 "charset": "utf-8"
             }
-        }),
-        new WebpackCdnPlugin({
-            modules: {
-                vue: [
-                    { name: "vue", var: "Vue", path: "dist/vue.common.dev.js"}
-                ]
-            }
         })
     ],
+    externals: {
+        vue: "Vue",
+        firebase: "firebase",
+        firebaseui: "firebaseui"
+    },
     output: {
         filename: "[name].js",
         path: path.normalize(path.join(__dirname, "..", "dist"))
