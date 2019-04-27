@@ -86,11 +86,15 @@ module.exports = {
             }
         })
     ],
-    externals: {
-        vue: "Vue",
-        firebase: "firebase",
-        firebaseui: "firebaseui"
-    },
+    externals: [
+        {
+            vue: "Vue",
+            "firebase/app": "firebase",
+            "firebase/auth": "firebase.auth",
+            "firebase/firestore": "firebase.firestore",
+            firebaseui: "firebaseui",
+        }
+    ],
     output: {
         filename: "[name].js",
         path: path.normalize(path.join(__dirname, "..", "dist"))
