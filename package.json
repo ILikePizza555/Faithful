@@ -55,6 +55,12 @@
       "@typescript-eslint/indent": [
         "error",
         4
+      ],
+      "@typescript-eslint/no-parameter-properties": [
+        "error",
+        {
+          "allows": ["private"]
+        }
       ]
     }
   },
