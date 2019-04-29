@@ -46,11 +46,13 @@
         "error",
         "double"
       ],
+      "no-console": [
+        "error",
+        { "allow": ["error"]}
+      ],
       "@typescript-eslint/explicit-function-return-type": [
         2,
-        {
-          "allowExpressions": true
-        }
+        {"allowExpressions": true}
       ],
       "@typescript-eslint/indent": [
         "error",
@@ -58,9 +60,7 @@
       ],
       "@typescript-eslint/no-parameter-properties": [
         "error",
-        {
-          "allows": ["private"]
-        }
+        { "allows": ["private"]}
       ]
     }
   },
