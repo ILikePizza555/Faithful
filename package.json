@@ -22,6 +22,7 @@
     "typescript": "^3.3.4000",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.0",
+    "vue-router": "^3.0.6",
     "vue-scrollto": "^2.15.0",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.29.6",
@@ -48,11 +49,17 @@
       ],
       "no-console": [
         "error",
-        { "allow": ["error"]}
+        {
+          "allow": [
+            "error"
+          ]
+        }
       ],
       "@typescript-eslint/explicit-function-return-type": [
         2,
-        {"allowExpressions": true}
+        {
+          "allowExpressions": true
+        }
       ],
       "@typescript-eslint/indent": [
         "error",
@@ -60,7 +67,11 @@
       ],
       "@typescript-eslint/no-parameter-properties": [
         "error",
-        { "allows": ["private"]}
+        {
+          "allows": [
+            "private"
+          ]
+        }
       ]
     }
   },
