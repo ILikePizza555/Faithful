@@ -5,7 +5,7 @@ type Timestamp = firebase.firestore.Timestamp;
 type DocumentSnapshot = firebase.firestore.DocumentSnapshot;
 type CollectionRef = firebase.firestore.CollectionReference;
 
-export const enum Collections {
+export enum Collection {
     LISTS = "lists",
     USERINFO = "user_info"
 }
@@ -18,7 +18,7 @@ const collectionRefs: {[name: string]: CollectionRef} = {}
  * 
  * @param col The Collection to get a reference to.
  */
-export function getCollectionRef(col: Collections): CollectionRef {
+export function getCollectionRef(col: Collection): CollectionRef {
     if(!(col in collectionRefs)) {
         collectionRefs[col] = fsDb.collection(col);
     }
