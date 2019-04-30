@@ -1,17 +1,27 @@
 <!-- Component that's displayed on the root route. Renders the user page. -->
 <template>
-    <div id="user-page">
+    <div id="user-page" class="center">
         <h1>Hello {{displayName}}.</h1>
         <h2>What are we doing today?</h2>
         <div id="tl-list">
-            <router-link v-for="i in items"
+            <router-link v-for="i in tdLists"
                  v-bind:key="i.id"
+                 :to="{name: 'list', params: {id: i.id}}"
                  class="list-item">
                 <div class="list-itme">{{i.name}}</div>
             </router-link>
         </div>
     </div>
 </template>
+
+<style lang="scss">
+@import "../sass/common.scss";
+
+#tl-list {
+    display: flex;
+    
+}
+</style>
 
 <script lang="ts">
 import Vue from "vue"
@@ -21,7 +31,7 @@ import {TodoList} from "../js/Models"
 export default Vue.extend({
     props: {
         "displayName": String,
-        "items": Array as Prop<TodoList[]>
+        "tdLists": Array as Prop<TodoList[]>
     }
 })
 </script>

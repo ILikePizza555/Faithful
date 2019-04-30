@@ -7,7 +7,7 @@ import VueRouter from "vue-router";
 import CardListApp from "../vue/CardListApp.vue";
 import UserPageApp from "../vue/UserPageApp.vue";
 
-import {TodoList, Collections, getCollectionRef} from "./Models";
+import {TodoList, Collection, getCollectionRef} from "./Models";
 
 Vue.use(VueRouter);
 
@@ -19,14 +19,17 @@ const vmData = {
 const router = new VueRouter({
     routes: [
         {path: "/", component: UserPageApp, params: true},
-        {path: "/list/:id", component: CardListApp}
+        {path: "/list/:id", name: "list", component: CardListApp}
     ]
 })
 
 const vm = new Vue({
     router,
     data: vmData,
-    template: "<router-view></router-view>"
+    template: `<router-view 
+        :displayName="userInfo.displayName"
+        :tdLists="lists">
+    </router-view>`
 });
 
 firebase.auth().onAuthStateChanged(function authStateHandler(user) {
@@ -35,7 +38,7 @@ firebase.auth().onAuthStateChanged(function authStateHandler(user) {
         vmData.userInfo = user;
 
         // Get user's lists from database
-        TodoList.getByOwner(getCollectionRef(Collections.LISTS), user.uid)
+        TodoList.getByOwner(getCollectionRef(Collection.LISTS), user.uid)
             .then(tls => {vmData.lists = tls})
             .catch(err => {console.error("An error occured while accessing database: " + err)})
 
