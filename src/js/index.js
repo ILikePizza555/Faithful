@@ -1,6 +1,6 @@
 import "../sass/index.scss";
 
-import {firebase} from "./init_firebase";
+import {firebase} from "./FirebaseInit";
 
 import * as firebaseui from "firebaseui";
 
