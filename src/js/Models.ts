@@ -1,4 +1,4 @@
-import {firebase} from "./FirebaseInit";
+import {firebase, fsDb} from "./FirebaseInit";
 import {Color} from "./Color";
 
 type Timestamp = firebase.firestore.Timestamp;
@@ -8,6 +8,21 @@ type CollectionRef = firebase.firestore.CollectionReference;
 export const enum Collections {
     LISTS = "lists",
     USERINFO = "user_info"
+}
+
+const collectionRefs: {[name: string]: CollectionRef} = {}
+
+/**
+ * Helper function that gets a CollectionReference from a Collections.
+ * CollectionReferences obtained through this function are cached to avoid spawning several objects.
+ * 
+ * @param col The Collection to get a reference to.
+ */
+export function getCollectionRef(col: Collections): CollectionRef {
+    if(!(col in collectionRefs)) {
+        collectionRefs[col] = fsDb.collection(col);
+    }
+    return collectionRefs[col];
 }
 
 export interface Background {
