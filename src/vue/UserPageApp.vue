@@ -4,11 +4,11 @@
         <h1>Hello {{displayName}}.</h1>
         <h2>What are we doing today?</h2>
         <div id="tl-list">
-            <a v-for="i in items"
+            <router-link v-for="i in items"
                  v-bind:key="i.id"
                  class="list-item">
-                {{i.name}}
-            </a>
+                <div class="list-itme">{{i.name}}</div>
+            </router-link>
         </div>
     </div>
 </template>
