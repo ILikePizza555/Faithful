@@ -1,9 +1,9 @@
-import * as firebase from "firebase/app";
+import {firebase} from "./FirebaseInit";
 import {Color} from "./Color";
 
-type Timestamp = firebase.firestore.Timestamp
-type DocumentSnapshot = firebase.firestore.DocumentSnapshot
-type CollectionRef = firebase.firestore.CollectionReference
+type Timestamp = firebase.firestore.Timestamp;
+type DocumentSnapshot = firebase.firestore.DocumentSnapshot;
+type CollectionRef = firebase.firestore.CollectionReference;
 
 export const enum Collections {
     LISTS = "lists",

@@ -6,6 +6,8 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
+export {firebase}
+
 const firebaseConfig = {
     apiKey: "AIzaSyDDCVGzxZb1cM-Be3sRtbGFdhRP2-AHMUE",
     authDomain: "faithful.firebaseapp.com",
@@ -16,6 +18,4 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-const fsDb = firebase.firestore();
-
-export {firebase, firebaseConfig, fsDb};
+export const fsDb = firebase.firestore();
