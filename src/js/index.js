@@ -5,7 +5,7 @@ import {firebase} from "./init_firebase";
 import * as firebaseui from "firebaseui";
 
 const uiConfig = {
-    signInSuccessUrl: "/app.html",
+    signInSuccessUrl: "/app",
     signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID
     ],
