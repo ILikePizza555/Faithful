@@ -57,6 +57,7 @@ module.exports = {
             title: "Faithful",
             scripts: [
                 "https://cdn.jsdelivr.net/npm/vue/dist/vue.js",
+                "https://unpkg.com/vue-router/dist/vue-router.js",
                 "https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js",
                 "https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js",
                 "https://www.gstatic.com/firebasejs/5.10.1/firebase-firestore.js"
@@ -89,6 +90,7 @@ module.exports = {
     externals: [
         {
             vue: "Vue",
+            "vue-router": "VueRouter",
             "firebase/app": "firebase",
             "firebase/auth": "firebase.auth",
             "firebase/firestore": "firebase.firestore",
@@ -99,5 +101,12 @@ module.exports = {
         filename: "[name].js",
         path: path.normalize(path.join(__dirname, "..", "dist"))
     },
-    devtool: "inline-cheap-source-map"
+    devtool: "inline-cheap-source-map",
+    devServer: {
+        historyApiFallback: {
+            rewrites: [
+                {from: /^\/app\/?.*$/, to: "/app.html"}
+            ]
+        }
+    }
 }
