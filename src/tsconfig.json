@@ -6,6 +6,5 @@
         "module": "es2015",
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
-        "experimentalDecorators": true
     }
 }
