@@ -51,7 +51,7 @@ interface ItemSchema {
  */
 export class TodoList {
     /**
-     * Queries the database for call documents containing an "owner" field that matches the uid,
+     * Queries the database for all documents containing an "owner" field that matches the uid,
      * and returns them as an array of TodoLists.
      * 
      * @param collectionRef A reference to a collection to query.
@@ -62,6 +62,18 @@ export class TodoList {
             .where("owner", "==", uid)
             .get()
             .then(q => q.docs.map(doc => new TodoList(doc)))
+    }
+
+    /**
+     * Queries the database for a single document matching the given id.
+     * @param collectionRef 
+     * @param id 
+     */
+    public static getById(collectionRef: CollectionRef, id: string): Promise<TodoList> {
+        return collectionRef
+            .doc(id)
+            .get()
+            .then(q => new TodoList(q));
     }
 
     public constructor(private _document: DocumentSnapshot) {
