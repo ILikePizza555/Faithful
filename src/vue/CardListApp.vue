@@ -1,7 +1,7 @@
 <template>
     <div id="app-card-list" 
          class="full-page-container"
-         :style="{backgroundColor: background.color.hex6, color: fontColor}">
+         :style="currentStyle">
         <div class="center">
             <card-list
                 v-on:item-update="itemUpdateHandler($event)"
@@ -22,36 +22,38 @@
 <script lang="ts">
 import Vue from 'vue'
 import {Prop} from "vue/types/options";
-import {Background, Item} from "../js/Models";
+import {Background, Item, TodoList} from "../js/Models";
 import CardList from "./CardList.vue";
 
 type DataType = {
-    background: Background
+    items: Item[];
+    currentIndex: number;
 }
 
 export default Vue.extend({
     data: function(): DataType {
         return {
-            background: this.initialBackground
+            items: this.tlModel.items,
+            currentIndex: 0
         }
     },
     props: {
-        items: Array as Prop<Item[]>,
-        initialBackground: Object as Prop<Background>
+        id: String as Prop<String>,
+        tlModel: TodoList as Prop<TodoList>
+    },
+    computed: {
+        currentStyle: function(): object {
+            const i: Item = this.items[this.currentIndex];
+
+            return {
+                "backgroundColor": i.background.color.hex6,
+                "color": i.background.color.luminance > (150 / 255) ? "#403a2e" : "#fff9f4"
+            }
+        }
     },
     methods: {
         itemUpdateHandler: function(itemIndex: number) {
-            this.background = this.items[itemIndex].background;
-        }
-    },
-    computed: {
-        fontColor: function(): string {
-            const bgObj: Background = this.background;
-
-            if(bgObj.color.luminance > (150 / 255)) {
-                return "#000000";
-            }
-            return "#FFFFFF";
+            this.currentIndex = itemIndex;
         }
     },
     components: {
