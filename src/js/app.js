@@ -2,32 +2,20 @@
 import {firebase} from "./FirebaseInit";
 
 import Vue from "vue";
-import VueRouter from "vue-router";
-
-import CardListApp from "../vue/CardListApp.vue";
-import UserPageApp from "../vue/UserPageApp.vue";
+import {createRouter} from "./Routes";
 
 import {TodoList, Collection, getCollectionRef} from "./Models";
-
-Vue.use(VueRouter);
 
 const vmData = {
     userInfo: null,
     lists: []
 }
 
-const router = new VueRouter({
-    routes: [
-        {path: "/", component: UserPageApp, params: true},
-        {path: "/list/:id", name: "list", component: CardListApp}
-    ]
-})
-
 const vm = new Vue({
-    router,
+    router: createRouter(),
     data: vmData,
     template: `<router-view 
-        :displayName="userInfo.displayName"
+        :userInfo="userInfo"
         :tdLists="lists">
     </router-view>`
 });
