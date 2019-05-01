@@ -1,5 +1,5 @@
 import {firebase, fsDb} from "./FirebaseInit";
-import {Color} from "./Color";
+import {Color, fromHex} from "./Color";
 
 type Timestamp = firebase.firestore.Timestamp;
 type DocumentSnapshot = firebase.firestore.DocumentSnapshot;
@@ -36,6 +36,17 @@ export interface Item {
 }
 
 /**
+ * An entry in "items" as defined in Firestore
+ */
+interface ItemSchema {
+    id: number;
+    title: string;
+    background: {
+        color: string;
+    };
+}
+
+/**
  * Wrapper around a DocumentSnapshot that makes accessing fields easier.
  */
 export class TodoList {
@@ -61,5 +72,16 @@ export class TodoList {
     public get ownerUid(): string {return this._document.get("owner")}
     public get dateCreated(): Timestamp {return this._document.get("created_date")}
 
+    public get items(): Item[] {
+        //TODO: Cache results instead of generating them every time
+        return this._document
+            .get("items")
+            .map((i: ItemSchema): Item => {
+                const colorObj = fromHex(i.background.color);
+                return {...i, background: {color: colorObj}};
+            });
+    }
+
     //TODO: Implement setters
+    //TODO: Figure out if model should automatically update with onSnapshot
 }
