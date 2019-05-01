@@ -6,7 +6,7 @@
         <div id="tl-list">
             <router-link v-for="i in tdLists"
                  v-bind:key="i.id"
-                 :to="{name: 'list', params: {id: i.id}}"
+                 :to="{name: 'list', params: {id: i.id, tlModel: i}}"
                  class="list-item">
                 <div class="list-itme">{{i.name}}</div>
             </router-link>
