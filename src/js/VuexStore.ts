@@ -4,7 +4,7 @@ import Vuex, { StoreOptions } from "vuex";
 Vue.use(Vuex);
 
 interface StoreState {
-    userInfo: firebase.UserInfo | null;
+    userInfo: firebase.User | null;
 }
 
 export const store = new Vuex.Store<StoreState>({
