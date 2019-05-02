@@ -14,6 +14,14 @@ export const store = new Vuex.Store<StoreState>({
         userInfo: null,
         userTdLists: []
     },
+    getters: {
+        displayName: state => {
+            if(state.userInfo) { 
+                return state.userInfo.displayName
+            }
+            return null;
+        }
+    },
     mutations: {
         initState(state, init) {
             state.userInfo = init.userInfo;
