@@ -38,7 +38,10 @@ export default Vue.extend({
         }
     },
     props: {
-        id: String as Prop<String>
+        id: {
+            type: String,
+            required: true
+        }
     },
     computed: {
         currentStyle: function(): object {
