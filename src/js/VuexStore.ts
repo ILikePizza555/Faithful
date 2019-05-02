@@ -20,6 +20,9 @@ export const store = new Vuex.Store<StoreState>({
                 return state.userInfo.displayName
             }
             return null;
+        },
+        getTdListById: state => (id: string) => {
+            return state.userTdLists.filter(v => v.id == id)[0];
         }
     },
     mutations: {

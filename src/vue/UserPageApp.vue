@@ -8,7 +8,7 @@
                  v-bind:key="i.id"
                  :to="{name: 'list', params: {id: i.id}}"
                  class="list-item">
-                <div class="list-itme">{{i.name}}</div>
+                <div class="list-item">{{i.name}}</div>
             </router-link>
         </div>
     </div>

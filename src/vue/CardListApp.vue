@@ -5,7 +5,7 @@
         <div class="center">
             <card-list
                 v-on:item-update="itemUpdateHandler($event)"
-                :items="items"></card-list>
+                :items="activeModel.items"></card-list>
         </div>
     </div>
 </template>
@@ -26,24 +26,23 @@ import {Background, Item, TodoList} from "../js/Models";
 import CardList from "./CardList.vue";
 
 type DataType = {
-    items: Item[];
     currentIndex: number;
+    activeModel: TodoList;
 }
 
 export default Vue.extend({
     data: function(): DataType {
         return {
-            items: this.tlModel.items,
-            currentIndex: 0
+            currentIndex: 0,
+            activeModel: this.$store.getters.getTdListById(this.id)
         }
     },
     props: {
-        id: String as Prop<String>,
-        tlModel: TodoList as Prop<TodoList>
+        id: String as Prop<String>
     },
     computed: {
         currentStyle: function(): object {
-            const i: Item = this.items[this.currentIndex];
+            const i: Item = this.activeModel.items[this.currentIndex];
 
             return {
                 "backgroundColor": i.background.color.hex6,
