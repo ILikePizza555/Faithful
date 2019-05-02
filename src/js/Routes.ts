@@ -10,8 +10,8 @@ import UserPageApp from "../vue/UserPageApp.vue";
 Vue.use(VueRouter);
 
 export const routes = [
-    {path: "/", component: UserPageApp, params: true},
-    {path: "/list/:id", name: "list", component: CardListApp}
+    {path: "/", component: UserPageApp},
+    {path: "/list/:id", name: "list", component: CardListApp, props: true}
 ];
 
 /**
