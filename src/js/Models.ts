@@ -1,4 +1,4 @@
-import {firebase, firestore, Timestamp, DocumentSnap} from "./Firebase";
+import {firebase, firestore, Timestamp, DocumentSnap, CollectionRef} from "./Firebase";
 import {Color, fromHex} from "./Color";
 
 export interface Background {
@@ -43,6 +43,22 @@ function itemFromFS(fsObj: FirestoreItem): AugmentedItem {
  * Wrapper around a DocumentSnapshot that makes accessing fields easier.
  */
 export class TodoList {
+
+    /**
+     * Queries the given collection for all documents which have an `owner` field that
+     * matches the given ownerUid. After which, the documents are converted into `TodoList`
+     * instances and returned.
+     * @param ownerUid 
+     * @param collection 
+     */
+    public static getAllByOwner(ownerUid: string,
+        collection: CollectionRef=firestore.listCollectionRef): Promise<TodoList[]> {
+        
+        return collection.where("owner", "==", ownerUid)
+            .get()
+            .then(q => q.docs.map(d => new TodoList(d)))
+    }
+
     public constructor(private _document: DocumentSnap) {
     }
 
