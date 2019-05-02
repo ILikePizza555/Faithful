@@ -43,6 +43,7 @@ function itemFromFS(fsObj: FirestoreItem): AugmentedItem {
  * Wrapper around a DocumentSnapshot that makes accessing fields easier.
  */
 export class TodoList {
+    private readonly _tag = "model_tdlist";
 
     /**
      * Queries the given collection for all documents which have an `owner` field that
