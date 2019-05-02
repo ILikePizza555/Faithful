@@ -57,6 +57,7 @@ module.exports = {
             title: "Faithful",
             scripts: [
                 "https://cdn.jsdelivr.net/npm/vue/dist/vue.js",
+                "https://unpkg.com/vuex@3.1.0/dist/vuex.js",
                 "https://unpkg.com/vue-router/dist/vue-router.js",
                 "https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js",
                 "https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js",
@@ -90,6 +91,7 @@ module.exports = {
     externals: [
         {
             vue: "Vue",
+            vuex: "Vuex",
             "vue-router": "VueRouter",
             "firebase/app": "firebase",
             "firebase/auth": "firebase.auth",
