@@ -1,12 +1,12 @@
 <!-- Component that's displayed on the root route. Renders the user page. -->
 <template>
     <div id="user-page" class="center">
-        <h1>Hello {{displayName}}.</h1>
+        <h1>Hello {{$store.getters.displayName}}.</h1>
         <h2>What are we doing today?</h2>
         <div id="tl-list">
-            <router-link v-for="i in tdLists"
+            <router-link v-for="i in $store.state.userTdLists"
                  v-bind:key="i.id"
-                 :to="{name: 'list', params: {id: i.id, tlModel: i}}"
+                 :to="{name: 'list', params: {id: i.id}}"
                  class="list-item">
                 <div class="list-itme">{{i.name}}</div>
             </router-link>
@@ -29,9 +29,5 @@ import {Prop} from "vue/types/options";
 import {TodoList} from "../js/Models"
 
 export default Vue.extend({
-    props: {
-        "displayName": String,
-        "tdLists": Array as Prop<TodoList[]>
-    }
 })
 </script>
