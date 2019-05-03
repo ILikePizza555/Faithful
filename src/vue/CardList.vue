@@ -11,7 +11,7 @@
 <script lang="ts">
 import Vue from "vue";
 import {Prop} from "vue/types/options";
-import Card from "./Card.vue";
+import BaseCard from "./BaseCard.vue";
 import {Item} from "../js/Models";
 import "vue-scrollto";
 
@@ -34,7 +34,7 @@ export default (Vue as CardListComponent).extend({
         items: Array as Prop<Item[]>
     },
     components: {
-        "card": Card
+        "card": BaseCard
     },
     methods: {
         "move": function(itemNumber: number) {
