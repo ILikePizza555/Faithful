@@ -1,6 +1,7 @@
 <template>
-    <main v-on:click="move" class="card-list">
+    <main v-on:click="mainClickHander" class="card-list">
         <card v-for="i in items"
+              :editing="editing"
               :value="i"
               :key="i.id"
               ref="cardList">
@@ -11,7 +12,7 @@
 <script lang="ts">
 import Vue from "vue";
 import {Prop} from "vue/types/options";
-import BaseCard from "./BaseCard.vue";
+import EditCard from "./EditableCard.vue";
 import {Item} from "../js/Models";
 import "vue-scrollto";
 
@@ -31,19 +32,28 @@ export default (Vue as CardListComponent).extend({
         };
     },
     props: {
-        items: Array as Prop<Item[]>
+        items: Array as Prop<Item[]>,
+        editing: {
+            type: Boolean,
+            default: false
+        }
     },
     components: {
-        "card": BaseCard
+        "card": EditCard,
     },
     methods: {
-        "move": function(itemNumber: number) {
+        move(itemNumber?: number) {
             const i: number = typeof(itemNumber) === "number" ? itemNumber : this.activeItem + 1;
 
             this.activeItem = i;
             setTimeout(() => this.$scrollTo(this.$refs.cardList[i].$el as HTMLElement), 300);
 
             this.$emit("item-update", i);
+        },
+        mainClickHander() {
+            if(!this.editing) {
+                this.move();
+            }
         }
     }
 });
