@@ -1,0 +1,19 @@
+@import "variables.scss";
+
+.styled-inputs {
+    input {
+        border: 1px solid $input-base-border-color;
+        border-style: none none solid none !important;
+    }
+
+    input:focus {
+        outline: none;
+        border: 1px solid $input-focus-border-color;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        > input {
+            font-size: inherit;
+        }
+    }
+}
