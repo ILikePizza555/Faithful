@@ -1,7 +1,7 @@
 <template>
     <section class="card">
-        <h1>{{ item.title }}</h1>
-        <p v-if="item.desc">{{ item.desc }}</p>
+        <h1>{{ value.title }}</h1>
+        <p v-if="item.desc">{{ value.desc }}</p>
     </section>
 </template>
 
@@ -32,7 +32,7 @@
 <script>
 export default {
     props: {
-        "item": Object
+        "value": Object
     }
 };
 </script>
