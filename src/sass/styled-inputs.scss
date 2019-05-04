@@ -1,12 +1,14 @@
 @import "variables.scss";
 
 .styled-inputs {
-    input {
+    input[type="text"] {
+        background: none;
+
         border: 1px solid $input-base-border-color;
         border-style: none none solid none !important;
     }
 
-    input:focus {
+    input[type="text"]:focus {
         outline: none;
         border: 1px solid $input-focus-border-color;
     }
