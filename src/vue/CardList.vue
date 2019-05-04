@@ -1,7 +1,7 @@
 <template>
     <main v-on:click="move" class="card-list">
         <card v-for="i in items"
-              :item="i"
+              :value="i"
               :key="i.id"
               ref="cardList">
         </card>
