@@ -49,7 +49,7 @@ export default Vue.extend({
 
             return {
                 "backgroundColor": i.background.color.hex6,
-                "color": i.background.color.luminance > (150 / 255) ? "#403a2e" : "#fff9f4"
+                "color": i.background.color.luminance > (150 / 255) ? "#212121" : "#ffffff"
             }
         }
     },
