@@ -1,9 +1,9 @@
 <template>
     <main v-on:click="mainClickHander" class="card-list">
-        <card v-for="i in items"
+        <card v-for="(item, index) in items"
+              v-model="items[index]"
               :editing="editing"
-              :value="i"
-              :key="i.id"
+              :key="item.id"
               ref="cardList">
         </card>
     </main>
