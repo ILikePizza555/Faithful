@@ -1,7 +1,7 @@
 <template>
     <main v-on:click="mainClickHander" class="card-list">
         <card v-for="(item, index) in items"
-              v-model="items[index]"
+              :value="items[index]"
               :editing="editing"
               :key="item.id"
               ref="cardList">
@@ -15,6 +15,8 @@ import {Prop} from "vue/types/options";
 import EditCard from "./EditableCard.vue";
 import {Item} from "../js/Models";
 import "vue-scrollto";
+
+export const UpdateActiveItemEvent = "update-activeitem";
 
 // In the template we have a cardList ref, which is an array of Card
 // we defines a type here that extends Vue with a $refs property so that Typescript
@@ -48,7 +50,7 @@ export default (Vue as CardListComponent).extend({
             this.activeItem = i;
             setTimeout(() => this.$scrollTo(this.$refs.cardList[i].$el as HTMLElement), 300);
 
-            this.$emit("item-update", i);
+            this.$emit(UpdateActiveItemEvent, i);
         },
         mainClickHander() {
             if(!this.editing) {
