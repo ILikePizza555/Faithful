@@ -1,18 +1,18 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { TodoList } from "./Models";
+import {TodoListDocument} from "./Models";
 
 Vue.use(Vuex);
 
 interface StoreState {
     userInfo: firebase.User | null;
-    userTdLists: TodoList[];
+    userTdLists: {[id: string]: TodoListDocument};
 }
 
 export const store = new Vuex.Store<StoreState>({
     state: {
         userInfo: null,
-        userTdLists: []
+        userTdLists: {}
     },
     getters: {
         displayName: state => {
@@ -20,9 +20,6 @@ export const store = new Vuex.Store<StoreState>({
                 return state.userInfo.displayName
             }
             return null;
-        },
-        getTdListById: state => (id: string) => {
-            return state.userTdLists.filter(v => v.id == id)[0];
         }
     },
     mutations: {
@@ -32,6 +29,16 @@ export const store = new Vuex.Store<StoreState>({
         },
         userUpdate(state, user) {
             state.userInfo = user;
+        },
+        listSeverDocChange(state, docChange: firebase.firestore.DocumentChange) {
+            const docId = docChange.doc.id;
+            
+            //Have to follow Vue's reactivity rules. Meaning we can't add new fields normally.
+            if(docChange.type == "added" || docChange.type == "modified") {
+                Vue.set(state.userTdLists, docId, new TodoListDocument(docChange.doc));
+            } else if(docChange.type == "removed") {
+                Vue.set(state.userTdLists, docId, undefined);
+            }
         }
     }
 });
