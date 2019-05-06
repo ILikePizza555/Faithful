@@ -22,19 +22,19 @@
 <script lang="ts">
 import Vue from 'vue'
 import {Prop} from "vue/types/options";
-import {Background, Item, TodoList} from "../js/Models";
+import {Background, Item, TodoListDocument} from "../js/Models";
 import CardList from "./CardList.vue";
 
 type DataType = {
     currentIndex: number;
-    activeModel: TodoList;
+    activeModel: TodoListDocument;
 }
 
 export default Vue.extend({
     data: function(): DataType {
         return {
             currentIndex: 0,
-            activeModel: this.$store.getters.getTdListById(this.id)
+            activeModel: this.$store.state.userTdLists[this.id]
         }
     },
     props: {
