@@ -42,7 +42,7 @@ function itemFromFS(fsObj: FirestoreItem): AugmentedItem {
 /**
  * Wrapper around a DocumentSnapshot that makes accessing fields easier.
  */
-export class TodoList {
+export class TodoListDocument {
     private readonly _tag = "model_tdlist";
 
     /**
@@ -53,11 +53,11 @@ export class TodoList {
      * @param collection 
      */
     public static getAllByOwner(ownerUid: string,
-        collection: CollectionRef=firestore.listCollectionRef): Promise<TodoList[]> {
+        collection: CollectionRef=firestore.listCollectionRef): Promise<TodoListDocument[]> {
         
         return collection.where("owner", "==", ownerUid)
             .get()
-            .then(q => q.docs.map(d => new TodoList(d)))
+            .then(q => q.docs.map(d => new TodoListDocument(d)))
     }
 
     public constructor(private _document: DocumentSnap) {
