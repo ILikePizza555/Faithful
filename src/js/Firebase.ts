@@ -35,6 +35,7 @@ export type FTimestamp = firebase.firestore.Timestamp;
 export type FCollectionRef = firebase.firestore.CollectionReference;
 export type FDocumentRef = firebase.firestore.DocumentReference;
 export type FDocumentSnap = firebase.firestore.DocumentSnapshot;
+export type FQuerySnap = firebase.firestore.QuerySnapshot;
 
 export const firestore = firebase.firestore();
 export const collections = {
