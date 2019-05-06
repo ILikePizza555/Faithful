@@ -1,4 +1,4 @@
-import {firebase, firestore, Timestamp, DocumentSnap} from "./Firebase";
+import {FTimestamp, FDocumentSnap} from "./Firebase";
 import {Color, fromHex} from "./Color";
 
 export interface Background {
@@ -45,13 +45,13 @@ function itemFromFS(fsObj: FirestoreItem): AugmentedItem {
 export class TodoListDocument {
     private readonly _tag = "model_tdlist";
 
-    public constructor(private _document: DocumentSnap) {
+    public constructor(private _document: FDocumentSnap) {
     }
 
     public get id(): string {return this._document.id}
     public get name(): string {return this._document.get("name")}
     public get ownerUid(): string {return this._document.get("owner")}
-    public get dateCreated(): Timestamp {return this._document.get("created_date")}
+    public get dateCreated(): FTimestamp {return this._document.get("created_date")}
 
     public get items(): Item[] {
         return this._document
