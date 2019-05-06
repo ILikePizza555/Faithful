@@ -1,4 +1,4 @@
-import {firebase, firestore, Timestamp, DocumentSnap, CollectionRef} from "./Firebase";
+import {firebase, firestore, Timestamp, DocumentSnap} from "./Firebase";
 import {Color, fromHex} from "./Color";
 
 export interface Background {
@@ -55,21 +55,6 @@ export interface SnapshotCallback<T> {
  */
 export class TodoListDocument {
     private readonly _tag = "model_tdlist";
-
-    /**
-     * Queries the given collection for all documents which have an `owner` field that
-     * matches the given ownerUid. After which, the documents are converted into `TodoList`
-     * instances and returned.
-     * @param ownerUid 
-     * @param collection 
-     */
-    public static getAllByOwner(ownerUid: string,
-        collection: CollectionRef=firestore.listCollectionRef): Promise<TodoListDocument[]> {
-        
-        return collection.where("owner", "==", ownerUid)
-            .get()
-            .then(q => q.docs.map(d => new TodoListDocument(d)))
-    }
 
     public constructor(private _document: DocumentSnap) {
     }
