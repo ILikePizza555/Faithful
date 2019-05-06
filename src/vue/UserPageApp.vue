@@ -25,8 +25,6 @@
 
 <script lang="ts">
 import Vue from "vue"
-import {Prop} from "vue/types/options";
-import {TodoList} from "../js/Models"
 
 export default Vue.extend({
 })
