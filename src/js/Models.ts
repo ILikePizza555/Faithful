@@ -40,17 +40,6 @@ function itemFromFS(fsObj: FirestoreItem): AugmentedItem {
 }
 
 /**
- * Interface that defines appropriate callback methods that can be
- * passed to objects which deal with `onSnapshot()`
- */
-export interface SnapshotCallback<T> {
-    onLocal?: (doc: T) => void;
-    onServer?: (doc: T) => void;
-    onError?: (err: Error) => void;
-    onComplete?: () => void;
-}
-
-/**
  * Wrapper around a DocumentSnapshot that makes accessing fields easier.
  */
 export class TodoListDocument {
