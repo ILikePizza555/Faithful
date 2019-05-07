@@ -27,10 +27,10 @@ export const store = new Vuex.Store<StoreState>({
             state.userInfo = init.userInfo;
             state.userTdLists = init.userTdLists;
         },
-        userUpdate(state, user) {
+        updateUser(state, user) {
             state.userInfo = user;
         },
-        listSeverDocChange(state, docChange: firebase.firestore.DocumentChange) {
+        syncDocChanges(state, docChange: firebase.firestore.DocumentChange) {
             const docId = docChange.doc.id;
             
             //Have to follow Vue's reactivity rules. Meaning we can't add new fields normally.
