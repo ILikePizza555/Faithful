@@ -1,6 +1,6 @@
-import {FTimestamp, FDocumentSnap} from "./Firebase";
+import {FTimestamp, FDocumentSnap} from "../js/Firebase";
 
-export interface TDItem {
+export interface TodoListItem {
     readonly id: number;
     title: string;
     desc?: string;
@@ -17,7 +17,7 @@ export class TodoListDocument {
     public readonly dateCreated: FTimestamp;
 
     public name: string;
-    public items: TDItem[];
+    public items: TodoListItem[];
 
     public constructor(private _document: FDocumentSnap) {
         this.id = _document.id;
