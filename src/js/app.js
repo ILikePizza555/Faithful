@@ -1,25 +1,53 @@
 /* eslint-env browser */
-import {firebase} from "./Firebase";
+import {firebase, collections} from "./Firebase";
 
 import Vue from "vue";
 import {createRouter} from "./Routes";
 import {store} from "./VuexStore";
 
-import {TodoList} from "./Models";
-
 const vm = new Vue({
     router: createRouter(),
-    el: "#mount-point",
     store,
     template: "<router-view></router-view>"
 });
 
-firebase.auth().onAuthStateChanged(function authStateHandler(user) {
-    if(user) {
-        // User is logged in. 
-        // Get user's lists from database
-        TodoList.getAllByOwner(user.uid)
-            .then(tls => store.commit("initState", {userInfo: user, userTdLists: tls}))
-            .catch(err => {console.error("An error occured while accessing database: " + err)})
+/**
+ * The initalization process.
+ * 
+ * First we setup a callback to run after firebase finishes getting the user authentication
+ * information. Because most things are dependent on the user being authenticated, management of
+ * other Firebase services, including Firestore snapshot subscriptions, is done in this callback.
+ * 
+ * TODO: Move this to Observables.
+ */
+firebase.auth().onAuthStateChanged(
+    function authStateHandler(user) {
+        /** Unsubscribe function for the query snapshot listener. */
+        let queryUnsub = null;
+        let first = true;
+
+        if(user) {
+            queryUnsub = collections.lists.where("owner", "==", user.uid).onSnapshot({
+                next: function(q) {
+                    q.docChanges.forEach(
+                        docChange => store.commit("listServerDocChange", docChange)
+                    );
+
+                    if(first) {
+                        first = false;
+                        vm.$mount("#mount-point");
+                    }
+                },
+                error: function(err) {
+                    console.error("[QuerySnapshotHandler]" + err);
+                }
+            })
+        } else if(!user && !queryUnsub) {
+            // User has logged out, unsubscribe from any further snapshot events.
+            queryUnsub();
+        }
+    },
+    function authStateError(err) {
+        console.error("[authStateHandler]" + err);
     }
-})
+)
