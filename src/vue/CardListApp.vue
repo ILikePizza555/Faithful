@@ -4,7 +4,7 @@
          :style="currentStyle">
         <div class="center">
             <card-list
-                v-on:item-update="itemUpdateHandler($event)"
+                v-on:update-activeitem="itemUpdateHandler($event)"
                 :items="activeModel.items"></card-list>
         </div>
     </div>
@@ -23,7 +23,7 @@
 import Vue from 'vue'
 import {Prop} from "vue/types/options";
 import {Background, Item, TodoListDocument} from "../js/Models";
-import CardList from "./CardList.vue";
+import CardList, {UpdateActiveItemEvent} from "./CardList.vue";
 
 type DataType = {
     currentIndex: number;
