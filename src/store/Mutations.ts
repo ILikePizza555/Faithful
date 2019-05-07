@@ -1,7 +1,11 @@
 import firebase from "firebase"
 
 export const updateUser = "updateUser";
+
 export const pushServerChange = "pushServerChange";
+export const updateTodoItem = "updateTodoItem";
+export const addTodoItem = "addTodoItem";
+export const delTodoItem = "delTodoItem";
 
 export const mutationsObj = {
     [updateUser]: function(state: any, user: firebase.UserInfo) {
