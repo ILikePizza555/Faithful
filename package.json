@@ -15,7 +15,6 @@
     "node-sass": "^4.11.0",
     "pug": "^2.0.3",
     "pug-loader": "^2.4.0",
-    "rxjs": "^6.5.1",
     "sass": "^1.17.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
