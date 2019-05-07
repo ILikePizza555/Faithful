@@ -26,11 +26,13 @@ firebase.auth().onAuthStateChanged(
         let queryUnsub = null;
         let first = true;
 
+        store.commit("userUpdate", user);
+
         if(user) {
             queryUnsub = collections.lists.where("owner", "==", user.uid).onSnapshot({
                 next: function(q) {
-                    q.docChanges.forEach(
-                        docChange => store.commit("listServerDocChange", docChange)
+                    q.docChanges().forEach(
+                        docChange => store.commit("listSeverDocChange", docChange)
                     );
 
                     if(first) {
