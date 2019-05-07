@@ -3,7 +3,8 @@ import {firebase, collections} from "./Firebase";
 
 import Vue from "vue";
 import {createRouter} from "./Routes";
-import {store} from "./VuexStore";
+import {store} from "../store/Store";
+import {updateUser, pushServerChanges} from "../store/Mutations";
 
 const vm = new Vue({
     router: createRouter(),
@@ -26,13 +27,13 @@ firebase.auth().onAuthStateChanged(
         let queryUnsub = null;
         let first = true;
 
-        store.commit("updateUser", user);
+        store.commit(updateUser, user);
 
         if(user) {
             queryUnsub = collections.lists.where("owner", "==", user.uid).onSnapshot({
                 next: function(q) {
                     q.docChanges().forEach(
-                        docChange => store.commit("syncDocChanges", docChange)
+                        docChange => store.commit(pushServerChanges, docChange)
                     );
 
                     if(first) {
