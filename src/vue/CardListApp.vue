@@ -5,7 +5,7 @@
         <div class="center">
             <card-list
                 v-on:update-activeitem="itemUpdateHandler($event)"
-                :items="activeModel.items"></card-list>
+                :model="activeModel"></card-list>
         </div>
     </div>
 </template>

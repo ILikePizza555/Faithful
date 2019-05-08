@@ -1,7 +1,8 @@
 <template>
     <main v-on:click="mainClickHander" class="card-list">
-        <card v-for="(item, index) in items"
-              :value="items[index]"
+        <card v-for="(item, index) in model.items"
+              :model="model"
+              :index="index"
               :editing="editing"
               :key="item.id"
               ref="cardList">
@@ -13,7 +14,7 @@
 import Vue from "vue";
 import {Prop} from "vue/types/options";
 import EditCard from "./EditableCard.vue";
-import {Item} from "../js/Models";
+import {TodoListItem, TodoListDocument} from "../store/Models";
 import "vue-scrollto";
 
 export const UpdateActiveItemEvent = "update-activeitem";
@@ -34,7 +35,7 @@ export default (Vue as CardListComponent).extend({
         };
     },
     props: {
-        items: Array as Prop<Item[]>,
+        model: TodoListDocument as Prop<TodoListDocument>,
         editing: {
             type: Boolean,
             default: false

@@ -12,7 +12,13 @@
 <script>
 export default {
     props: {
-        "value": Object
+        "model": Object,
+        "index": Number
+    },
+    computed: {
+        value() {
+            return this.model.items[this.index];
+        }
     }
 };
 </script>
