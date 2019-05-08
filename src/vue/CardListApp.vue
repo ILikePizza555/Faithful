@@ -22,8 +22,9 @@
 <script lang="ts">
 import Vue from 'vue'
 import {Prop} from "vue/types/options";
-import {Background, Item, TodoListDocument} from "../js/Models";
+import {TodoListDocument, TodoListItem} from "../store/Models";
 import CardList, {UpdateActiveItemEvent} from "./CardList.vue";
+import {fromHex} from "../js/Color";
 
 type DataType = {
     currentIndex: number;
@@ -45,11 +46,12 @@ export default Vue.extend({
     },
     computed: {
         currentStyle: function(): object {
-            const i: Item = this.activeModel.items[this.currentIndex];
+            const i: TodoListItem.TodoListItem = this.activeModel.items[this.currentIndex];
+            const color = fromHex(i.background.color);
 
             return {
-                "backgroundColor": i.background.color.hex6,
-                "color": i.background.color.luminance > (150 / 255) ? "#212121" : "#ffffff"
+                "backgroundColor": i.background.color,
+                "color": color.luminance > (150 / 255) ? "#212121" : "#ffffff"
             }
         }
     },
