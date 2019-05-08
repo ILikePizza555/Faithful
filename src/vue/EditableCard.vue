@@ -4,12 +4,12 @@
             <h1>
                 <input
                     :value="value.title"
-                    @input="$emit(EditTitleEvent, {value, edit: $event.target.value})"
+                    @input="handleEdit:({title: $event.target.value})"
                     type="text">
             </h1>
             <input
                 :value="value.desc"
-                @input="$emit(EditDescEvent, {value, edit: $event.target.value})"
+                @input="handleEdit({desc: $event.target.value})"
                 type="text">
         </template>
         <template v-else>
@@ -27,13 +27,21 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import {updateTodoItem} from "../store/Mutations";
 import BaseCard from "./BaseCard.vue";
-
-export const EditTitleEvent = "edit-title";
-export const EditDescEvent = "edit-desc";
 
 export default Vue.extend({
     extends: BaseCard,
-    props: ["editing"]
+    props: ["editing"],
+    methods: {
+        handleEdit(change: {title: string} | {desc: string}) {
+            this.store.commit(updateTodoItem, {
+                todoListId: this.model.id,
+                itemId: this.index,
+                type: "change",
+                change
+            });
+        }
+    }
 })
 </script>
