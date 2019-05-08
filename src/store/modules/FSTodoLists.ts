@@ -1,22 +1,51 @@
 import Vue from "vue";
-import {pushServerChange} from "../Mutations";
+import {pushServerChange, updateTodoItem} from "../Mutations";
 import {firestore} from "firebase";
-import {TodoListDocument} from "../Models";
+import {TodoListDocument, TodoListItem} from "../Models";
+import { Module } from "vuex";
 
-export const FSTodoLists = {
+interface FSTodoListsState {
+    userTodoLists: Map<string, TodoListDocument>;
+    changes: TodoListItem.Modification[];
+}
+
+export const FSTodoLists: Module<FSTodoListsState, any> = {
     state: {
-        userTodoLists: {}
+        userTodoLists: new Map<string, TodoListDocument>(),
+        changes: []
     },
     mutations: {
-        [pushServerChange](state: any, docChange: firestore.DocumentChange) {
+        [pushServerChange](state: FSTodoListsState, docChange: firestore.DocumentChange) {
             const docId = docChange.doc.id;
             
             //Have to follow Vue's reactivity rules. Meaning we can't add new fields normally.
             if(docChange.type == "added" || docChange.type == "modified") {
-                Vue.set(state.userTodoLists, docId, new TodoListDocument(docChange.doc));
+                state.userTodoLists.set(docId, new TodoListDocument(docChange.doc));
             } else if(docChange.type == "removed") {
-                Vue.set(state.userTodoLists, docId, undefined);
+                state.userTodoLists.delete(docId);
             }
+        },
+        [updateTodoItem](state: FSTodoListsState, itemChange: TodoListItem.Modification) {
+            const tdList = state.userTodoLists.get(itemChange.todoListId);
+            if(!tdList) { throw new Error("[mutation:updateTodoItem] Invalid list id: " + itemChange.todoListId); }
+
+            state.changes.push(itemChange);
+
+            if(itemChange.type == "add") {
+                tdList.items.push(itemChange.change);
+            } else if(itemChange.type == "remove") {
+                tdList.items = tdList.items.filter((_, i) => i != itemChange.itemId);
+            } else if(itemChange.type == "change") {
+                tdList.items[itemChange.itemId] = {
+                    ...tdList.items[itemChange.itemId],
+                    ...itemChange.change
+                }
+            } else {
+                // This shouldn't happen, but just in case.
+                throw new Error("[mutation:updateTodoItem] Invalid modification type: " + (itemChange as any).type);
+            }
+
+            state.userTodoLists.set(tdList.id, tdList);
         }
     }
 }
