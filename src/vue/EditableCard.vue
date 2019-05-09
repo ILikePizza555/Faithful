@@ -4,7 +4,7 @@
             <h1>
                 <input
                     :value="value.title"
-                    @input="handleEdit:({title: $event.target.value})"
+                    @input="handleEdit({title: $event.target.value})"
                     type="text">
             </h1>
             <input
@@ -29,13 +29,19 @@
 import Vue from 'vue'
 import {updateTodoItem} from "../store/Mutations";
 import BaseCard from "./BaseCard.vue";
+import {TodoListDocument} from '../store/Models';
 
-export default Vue.extend({
+type EditableCardComponent = Vue.VueConstructor<{
+    model: TodoListDocument;
+    index: number;
+} & Vue>
+
+export default (Vue as EditableCardComponent).extend({
     extends: BaseCard,
     props: ["editing"],
     methods: {
         handleEdit(change: {title: string} | {desc: string}) {
-            this.store.commit(updateTodoItem, {
+            this.$store.commit(updateTodoItem, {
                 todoListId: this.model.id,
                 itemId: this.index,
                 type: "change",
