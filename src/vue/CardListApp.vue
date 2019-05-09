@@ -2,6 +2,7 @@
     <div id="app-card-list" 
          class="full-page-container"
          :style="currentStyle">
+        <app-bar></app-bar>
         <div class="center">
             <card-list
                 v-on:update-activeitem="itemUpdateHandler($event)"
@@ -24,6 +25,7 @@ import Vue from 'vue'
 import {Prop} from "vue/types/options";
 import {TodoListDocument, TodoListItem} from "../store/Models";
 import CardList, {UpdateActiveItemEvent} from "./CardList.vue";
+import TheAppBar from "./TheAppBar.vue";
 import {fromHex} from "../js/Color";
 
 type DataType = {
@@ -61,7 +63,8 @@ export default Vue.extend({
         }
     },
     components: {
-        "card-list": CardList
+        "card-list": CardList,
+        "app-bar": TheAppBar
     }
 });
 </script>
