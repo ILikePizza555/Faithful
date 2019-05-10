@@ -3,11 +3,9 @@
          class="full-page-container"
          :style="currentStyle">
         <app-bar></app-bar>
-        <div class="center">
-            <card-list
-                v-on:update-activeitem="itemUpdateHandler($event)"
-                :model="activeModel"></card-list>
-        </div>
+        <card-list
+            v-on:update-activeitem="itemUpdateHandler($event)"
+            :model="activeModel"></card-list>
     </div>
 </template>
 

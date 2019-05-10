@@ -1,14 +1,27 @@
 <template>
-    <main v-on:click="mainClickHander" class="card-list">
-        <card v-for="(item, index) in model.items"
-              :model="model"
-              :index="index"
-              :editing="editing"
-              :key="item.id"
-              ref="cardList">
-        </card>
-    </main>
+    <div id="card-list-container">
+        <div class="center">
+            <main v-on:click="mainClickHander">
+                <card v-for="(item, index) in model.items"
+                    :model="model"
+                    :index="index"
+                    :editing="editing"
+                    :key="item.id"
+                    ref="cardList"></card>
+            </main>
+        </div>
+    </div>
 </template>
+
+<style lang="scss">
+@import "../sass/common.scss";
+
+#card-list-container {
+    height: 100%;
+    overflow-y: scroll;
+}
+</style>
+
 
 <script lang="ts">
 import Vue from "vue";
