@@ -8,7 +8,7 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store<any>({
     modules: {
-        FSTodoLists
+        fsLists: FSTodoLists
     },
     state: {
         userInfo: null
