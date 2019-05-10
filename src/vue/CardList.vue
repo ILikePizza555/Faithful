@@ -62,7 +62,9 @@ export default (Vue as CardListComponent).extend({
             const i: number = typeof(itemNumber) === "number" ? itemNumber : this.activeItem + 1;
 
             this.activeItem = i;
-            setTimeout(() => this.$scrollTo(this.$refs.cardList[i].$el as HTMLElement), 300);
+            setTimeout(() => 
+                this.$scrollTo(this.$refs.cardList[i].$el as HTMLElement, 500, {container: "#card-list-container"}),
+                300);
 
             this.$emit(UpdateActiveItemEvent, i);
         },
