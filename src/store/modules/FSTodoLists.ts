@@ -14,6 +14,14 @@ export const FSTodoLists: Module<FSTodoListsState, any> = {
         userTodoLists: new Map<string, TodoListDocument>(),
         changes: []
     },
+    getters: {
+        getUserTodoLists(state): IterableIterator<TodoListDocument> {
+            return state.userTodoLists.values();
+        },
+        listById(state) { 
+            return (id: string) => state.userTodoLists.get(id);
+        }
+    },
     mutations: {
         [pushServerChange](state: FSTodoListsState, docChange: firestore.DocumentChange) {
             const docId = docChange.doc.id;
