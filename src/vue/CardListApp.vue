@@ -35,7 +35,7 @@ export default Vue.extend({
     data: function(): DataType {
         return {
             currentIndex: 0,
-            activeModel: this.$store.state.userTdLists[this.id]
+            activeModel: this.$store.getters.listById(this.id)
         }
     },
     props: {
