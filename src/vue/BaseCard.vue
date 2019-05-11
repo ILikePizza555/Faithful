@@ -1,5 +1,5 @@
 <template>
-    <div class="card-container">
+    <div class="card-container viewport">
         <section class="card">
             <h1>{{ value.title }}</h1>
             <p v-if="item.desc">{{ value.desc }}</p>

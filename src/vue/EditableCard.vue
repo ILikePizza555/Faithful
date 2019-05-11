@@ -1,5 +1,5 @@
 <template>
-    <div class="card-container">
+    <div class="card-container viewport">
         <section class="card styled-inputs">
             <template v-if="editing">
                 <h1>

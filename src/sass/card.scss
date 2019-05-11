@@ -3,8 +3,6 @@
 .card-container {
     display: block;
     width: 100%;
-
-    height: calc(100vh - #{$appbar-height});
 }
 
 .card {

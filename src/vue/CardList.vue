@@ -1,5 +1,8 @@
 <template>
-    <div id="card-list-container">
+    <div id="card-list-container" 
+         class="viewport" 
+         @scroll="cardListScrollHandler" 
+         ref="container">
         <div class="center">
             <main v-on:click="mainClickHander">
                 <card v-for="(item, index) in model.items"
@@ -15,9 +18,9 @@
 
 <style lang="scss">
 @import "../sass/common.scss";
+@import "../sass/variables.scss";
 
 #card-list-container {
-    height: 100%;
     overflow-y: scroll;
 }
 </style>
