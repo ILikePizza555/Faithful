@@ -1,8 +1,10 @@
 <template>
-    <section class="card">
-        <h1>{{ value.title }}</h1>
-        <p v-if="item.desc">{{ value.desc }}</p>
-    </section>
+    <div class="card-container">
+        <section class="card">
+            <h1>{{ value.title }}</h1>
+            <p v-if="item.desc">{{ value.desc }}</p>
+        </section>
+    </div>
 </template>
 
 <style lang="scss">

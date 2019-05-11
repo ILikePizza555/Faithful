@@ -1,22 +1,24 @@
 <template>
-    <section class="card styled-inputs">
-        <template v-if="editing">
-            <h1>
+    <div class="card-container">
+        <section class="card styled-inputs">
+            <template v-if="editing">
+                <h1>
+                    <input
+                        :value="value.title"
+                        @input="handleEdit({title: $event.target.value})"
+                        type="text">
+                </h1>
                 <input
-                    :value="value.title"
-                    @input="handleEdit({title: $event.target.value})"
+                    :value="value.desc"
+                    @input="handleEdit({desc: $event.target.value})"
                     type="text">
-            </h1>
-            <input
-                :value="value.desc"
-                @input="handleEdit({desc: $event.target.value})"
-                type="text">
-        </template>
-        <template v-else>
-            <h1>{{value.title}}</h1>
-            <span>{{value.desc}}</span>
-        </template>
-    </section>
+            </template>
+            <template v-else>
+                <h1>{{value.title}}</h1>
+                <span>{{value.desc}}</span>
+            </template>
+        </section>
+    </div>
 </template>
 
 <style lang="scss">
