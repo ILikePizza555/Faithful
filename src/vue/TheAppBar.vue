@@ -7,22 +7,26 @@
 </template>
 
 <style lang="scss">
-    #the-appbar {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
+@import "../sass/variables";
 
-        opacity: 0;
-        transition: opacity 0.5s;
+#the-appbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 
-        &:hover {
-            opacity: 1.0;
-        }
+    opacity: 0;
+    transition: opacity 0.5s;
 
-        &:focus {
-            opacity: 1.0;
-        }
+    height: $appbar-height;
+
+    &:hover {
+        opacity: 1.0;
     }
+
+    &:focus {
+        opacity: 1.0;
+    }
+}
 </style>
 
 <script lang="ts">
