@@ -29,6 +29,10 @@ import CardList, {UpdateActiveItemEvent} from "./CardList.vue";
 import TheAppBar from "./TheAppBar.vue";
 import {fromHex} from "../js/Color";
 
+/**
+ * The type of of an instance of this Vue component.
+ * Used for `this`-typing in methods and computed properties
+ */
 interface AppCardList extends Vue {
     currentIndex: number;
     id: string;
@@ -49,6 +53,7 @@ export default Vue.extend({
         }
     },
     computed: {
+        // NOTE: The `this` parameter is used by Typescript for type-checking. It is removed on compilation.
         currentStyle: function(this: AppCardList): object {
             const i: TodoListItem.TodoListItem = this.activeModel.items[this.currentIndex];
             const color = fromHex(i.background.color);
