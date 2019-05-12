@@ -28,10 +28,22 @@
 
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue, { VueConstructor } from 'vue'
 import {updateTodoItem} from "../store/Mutations";
 import BaseCard from "./BaseCard.vue";
-import {TodoListDocument} from '../store/Models';
+import {TodoListDocument, TodoListItem} from '../store/Models';
+
+/**
+ * The type of an instance of this Vue component.
+ */
+export interface EditableCardInterface extends Vue {
+    model: TodoListDocument;
+    index: number;
+    editing: boolean;
+    value: TodoListItem.TodoListItem;
+    getInnerCardElement(): Element;
+    handleEdit(change: {title: string} | {desc: string}): void;
+}
 
 type EditableCardComponent = Vue.VueConstructor<{
     model: TodoListDocument;
