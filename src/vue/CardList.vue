@@ -83,13 +83,23 @@ export default (Vue as CardListComponent).extend({
                 this.move();
             }
         },
+        updateViewingItem(index: number) {
+            if(index < 0) {
+                throw new Error("Index out of range: " + index);
+            } else if (index >= this.model.items.length) {
+                throw new Error("Index out of range(max: " + this.model.items.length +"): " + index);
+            }
+
+            this.viewingItem = index;
+            this.$emit(UpdateViewingItemEvent, index);
+        },
         cardListScrollHandler: rateLimit(30, function(this: any, event: Event) {
             const cardList: EditableCardInterface[] = this.$refs.cardList;
             const containerEl: Element = this.$refs.container;
 
             cardList.forEach(function(this: any, v: EditableCardInterface) {
-                if(isElementInViewport(v.getInnerCardElement(), containerEl)) {
-                    this.$emit(UpdateViewingItemEvent, v.index);
+                if(isElementInViewport(v.getInnerCardElement(), containerEl)) { 
+                    this.updateViewingItem(v.index);
                 }
             }.bind(this));
         })
