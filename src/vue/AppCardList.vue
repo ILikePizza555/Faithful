@@ -4,7 +4,8 @@
          :style="currentStyle">
         <app-bar 
             :title="activeModel.name"
-            :modelId="id"></app-bar>
+            :modelId="id"
+            @app-back="$router.push('/')"></app-bar>
         <card-list
             v-on:update-activeitem="itemUpdateHandler($event)"
             v-on:update-viewingitem="itemUpdateHandler($event)"
