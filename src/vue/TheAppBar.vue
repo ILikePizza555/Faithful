@@ -1,5 +1,5 @@
 <template>
-    <div id="the-appbar" class="fade-away">
+    <div id="the-appbar" :class="behavior">
         <div class="item">
             <router-link :to="backUrl" class="back-button flex-center-column"></router-link>
         </div>
@@ -40,6 +40,10 @@
     }
 }
 
+.stay {
+    opacity: 1;
+}
+
 .back-button {
     height: 100%;
     width: fit-content;
@@ -72,6 +76,9 @@ export default Vue.extend({
         "modelId": {
             type: String,
             required: true
+        },
+        "behavior" : {
+            default: "fade-away"
         }
     },
     computed: {
