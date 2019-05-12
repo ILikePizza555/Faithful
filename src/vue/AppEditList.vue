@@ -2,10 +2,14 @@
     <div id="app-card-editor"
          class="full-page-container">
         <app-bar
-            :title="activeModel.name"
-            :modelId="id"></app-bar>
+            behavior="stay"
+            :editing="true"
+            :title="'Editing: ' + activeModel.name"
+            :modelId="id"
+            @app-back="$router.push("/")"
+            @edit-done="handleEditDone"></app-bar>
         <card-list
-            :editing=true
+            :editing="true"
             :model="activeModel"></card-list>
     </div>
 </template>
@@ -28,6 +32,11 @@ export default Vue.extend({
     computed: {
         activeModel() {
             return this.$store.getters.listById(this.id)
+        }
+    },
+    methods: {
+        handleEditDone() {
+
         }
     },
     components: {
