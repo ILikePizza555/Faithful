@@ -1,13 +1,24 @@
 <template>
     <div id="the-appbar" :class="behavior">
         <div class="item">
-            <router-link :to="backUrl" class="back-button flex-center-column"></router-link>
+            <a
+                href="#"
+                class="back-button flex-center-column"
+                @click="$emit('app-back')"></a>
         </div>
         <div class="item flex-center-column">{{title}}</div>
         <div class="item flex-center-column">
-            <router-link :to="editLink">
+            <router-link
+                v-if="!editing"
+                :to="editLink">
                 <i class="material-icons">create</i>
             </router-link>
+            <a
+                href="#"
+                v-else="editing" 
+                @click="$emit('edit-done')">
+                <i class="material-icons">done</i>
+            </a>
         </div>
     </div>
 </template>
