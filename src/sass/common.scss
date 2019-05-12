@@ -19,6 +19,16 @@ body {
     margin: 0vh auto;
 }
 
+.full-width {
+    display: block;
+    width: 100%;
+}
+
+.full-height {
+    display: block;
+    height: 100%;
+}
+
 .full-page-container {
     position: absolute;
     top: 0;
@@ -46,4 +56,10 @@ body {
     & > *:first-child {
         margin-top: 0;
     }
+}
+
+@mixin flex-center-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
