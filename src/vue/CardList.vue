@@ -98,7 +98,13 @@ export default (Vue as CardListComponent).extend({
             const containerEl: Element = this.$refs.container;
 
             cardList.forEach(function(this: any, v: EditableCardInterface) {
-                if(isElementInViewport(v.getInnerCardElement(), containerEl)) { 
+                const offset = {
+                    top: 30,
+                    left: 0,
+                    bottom: 0,
+                    right: 0
+                }
+                if(isElementInViewport(v.getInnerCardElement(), containerEl, offset)) { 
                     this.updateViewingItem(v.index);
                 }
             }.bind(this));

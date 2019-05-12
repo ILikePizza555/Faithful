@@ -5,15 +5,18 @@ export type ConsumerFunction = (...args: any[]) => void;
  * @param elem 
  * @param viewport 
  */
-export function isElementInViewport(elem: Element, viewport: Element = document.documentElement): boolean {
+export function isElementInViewport(
+    elem: Element, 
+    viewport: Element = document.documentElement, 
+    offset: {top: number, left: number, right: number, bottom: number} = {top: 0, left: 0, right: 0, bottom: 0}): boolean {
     const elemBounding = elem.getBoundingClientRect();
     const viewBounding = viewport.getBoundingClientRect();
 
     return (
-        elemBounding.top >= viewBounding.top &&
-        elemBounding.left >= viewBounding.left &&
-        elemBounding.right <= viewBounding.right &&
-        elemBounding.bottom <= viewBounding.bottom
+        elemBounding.top + offset.top >= viewBounding.top &&
+        elemBounding.left + offset.left >= viewBounding.left &&
+        elemBounding.right + offset.right <= viewBounding.right &&
+        elemBounding.bottom + offset.bottom <= viewBounding.bottom
     );
 }
 
