@@ -4,7 +4,9 @@
             <router-link :to="backUrl" class="back-button flex-center-column"></router-link>
         </div>
         <div class="item flex-center-column">{{title}}</div>
-        <div class="item flex-center-column">Edit</div>
+        <div class="item flex-center-column">
+            <i class="material-icons">create</i>
+        </div>
     </div>
 </template>
 
@@ -63,7 +65,10 @@ export default Vue.extend({
             default: "/"
         },
         "title": String,
-
+        "modelId": {
+            type: String,
+            required: true
+        }
     }
 })
 </script>
