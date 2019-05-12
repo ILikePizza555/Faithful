@@ -1,5 +1,5 @@
 <template>
-    <div id="the-appbar">
+    <div id="the-appbar" class="fade-away">
         <div class="item">
             <router-link :to="backUrl" class="back-button flex-center-column"></router-link>
         </div>
@@ -20,10 +20,16 @@
     flex-direction: row;
     justify-content: space-around;
 
+    height: $appbar-height;
+
+    > .item {
+        height: 100%;
+    }
+}
+
+.fade-away {
     opacity: 0;
     transition: opacity 0.5s;
-
-    height: $appbar-height;
 
     &:hover {
         opacity: 1.0;
@@ -31,10 +37,6 @@
 
     &:focus {
         opacity: 1.0;
-    }
-
-    > .item {
-        height: 100%;
     }
 }
 
