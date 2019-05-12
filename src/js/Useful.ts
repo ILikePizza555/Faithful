@@ -1,3 +1,8 @@
+/**
+ * Determines if a given element is currently placed inside of another one (the viewport).
+ * @param elem 
+ * @param viewport 
+ */
 export function isElementInViewport(elem: Element, viewport: Element = document.documentElement): boolean {
     const elemBounding = elem.getBoundingClientRect();
     const viewBounding = viewport.getBoundingClientRect();
