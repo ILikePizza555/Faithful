@@ -19,6 +19,12 @@ body {
     margin: 0vh auto;
 }
 
+.flex-center-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .full-width {
     display: block;
     width: 100%;
@@ -56,10 +62,4 @@ body {
     & > *:first-child {
         margin-top: 0;
     }
-}
-
-@mixin flex-center-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }

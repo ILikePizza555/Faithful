@@ -1,9 +1,9 @@
 <template>
     <div id="the-appbar">
         <div class="item">
-            <a href="#" class="back-button"></a>
+            <router-link :to="backUrl" class="back-button flex-center-column"></router-link>
         </div>
-        <div class="item">Title</div>
+        <div class="item flex-center-column">{{title}}</div>
         <div class="item">Edit</div>
     </div>
 </template>
@@ -40,8 +40,6 @@
     width: fit-content;
 
     padding: 0 0.5em 0 1em;
-
-    @include flex-center-column();
 }
 
 .back-button::after {
