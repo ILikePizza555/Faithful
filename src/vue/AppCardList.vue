@@ -38,7 +38,6 @@ export default Vue.extend({
     data: function(): DataType {
         return {
             currentIndex: 0,
-            activeModel: this.$store.getters.listById(this.id)
         }
     },
     props: {
@@ -56,6 +55,9 @@ export default Vue.extend({
                 "backgroundColor": i.background.color,
                 "color": color.luminance > (150 / 255) ? "#212121" : "#ffffff"
             }
+        },
+        activeModel() {
+            return this.$store.getters.listById(this.id)
         }
     },
     methods: {
