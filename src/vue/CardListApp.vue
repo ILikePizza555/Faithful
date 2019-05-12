@@ -5,6 +5,7 @@
         <app-bar></app-bar>
         <card-list
             v-on:update-activeitem="itemUpdateHandler($event)"
+            v-on:update-viewingitem="itemUpdateHandler($event)"
             :model="activeModel"></card-list>
     </div>
 </template>
