@@ -2,11 +2,11 @@
     <div id="app-card-editor"
          class="full-page-container">
         <app-bar
-            :title="active.name"
+            :title="activeModel.name"
             :modelId="id"></app-bar>
         <card-list
             :editing=true
-            :model="activeModel"></cardlist>
+            :model="activeModel"></card-list>
     </div>
 </template>
 
