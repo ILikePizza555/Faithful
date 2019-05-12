@@ -35,6 +35,7 @@ import {isElementInViewport, rateLimit} from "../js/Useful";
 import "vue-scrollto";
 
 export const UpdateActiveItemEvent = "update-activeitem";
+export const UpdateViewingItemEvent = "update-viewingitem";
 
 
 // In the template we have a cardList ref, which is an array of Card
@@ -50,7 +51,10 @@ type CardListComponent = Vue.VueConstructor<{
 export default (Vue as CardListComponent).extend({
     data: function () {
         return {
-            "activeItem": 0
+            // Item that's currently being completed
+            "activeItem": 0,
+            // Item that's currently in the viewport.
+            "viewingItem": 0,
         };
     },
     props: {
@@ -82,10 +86,11 @@ export default (Vue as CardListComponent).extend({
         cardListScrollHandler: rateLimit(30, function(this: any, event: Event) {
             const cardList: EditableCardInterface[] = this.$refs.cardList;
             const containerEl: Element = this.$refs.container;
+            const emitFunc = this.$emit;
 
             cardList.forEach((v, i) => {
                 if(isElementInViewport(v.getInnerCardElement(), containerEl)) {
-                    console.log("Element " + i + " is in viewport");
+                    emitFunc(UpdateViewingItemEvent, v.index);
                 }
             });
         })
