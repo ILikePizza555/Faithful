@@ -79,6 +79,10 @@ export default Vue.extend({
         },
         "behavior" : {
             default: "fade-away"
+        },
+        "editing": {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
