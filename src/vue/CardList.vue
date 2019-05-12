@@ -86,13 +86,12 @@ export default (Vue as CardListComponent).extend({
         cardListScrollHandler: rateLimit(30, function(this: any, event: Event) {
             const cardList: EditableCardInterface[] = this.$refs.cardList;
             const containerEl: Element = this.$refs.container;
-            const emitFunc = this.$emit;
 
-            cardList.forEach((v, i) => {
+            cardList.forEach(function(this: any, v: EditableCardInterface) {
                 if(isElementInViewport(v.getInnerCardElement(), containerEl)) {
-                    emitFunc(UpdateViewingItemEvent, v.index);
+                    this.$emit(UpdateViewingItemEvent, v.index);
                 }
-            });
+            }.bind(this));
         })
     }
 });
