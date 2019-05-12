@@ -21,6 +21,11 @@ export default {
         value() {
             return this.model.items[this.index];
         }
+    },
+    methods: {
+        getInnerCardElement() {
+            return this.$el.querySelector("section.card");
+        }
     }
 };
 </script>
