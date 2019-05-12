@@ -1,8 +1,12 @@
 <template>
     <div id="app-card-editor"
          class="full-page-container">
-        <app-bar>
-        </app-bar>
+        <app-bar
+            :title="active.name"
+            :modelId="id"></app-bar>
+        <card-list
+            :editing=true
+            :model="activeModel"></cardlist>
     </div>
 </template>
 
@@ -19,6 +23,11 @@ export default Vue.extend({
         id: {
             type: String,
             required: true
+        }
+    },
+    computed: {
+        activeModel() {
+            return this.$store.getters.listById(this.id)
         }
     },
     components: {
