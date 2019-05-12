@@ -4,11 +4,13 @@
          :style="currentStyle">
         <app-bar 
             :title="activeModel.name"
-            :modelId="activeModel.id"></app-bar>
+            :modelId="activeModel.id"
+            :editing="editing"></app-bar>
         <card-list
             v-on:update-activeitem="itemUpdateHandler($event)"
             v-on:update-viewingitem="itemUpdateHandler($event)"
-            :model="activeModel"></card-list>
+            :model="activeModel"
+            :editing="editing"></card-list>
     </div>
 </template>
 
@@ -45,6 +47,10 @@ export default Vue.extend({
         id: {
             type: String,
             required: true
+        },
+        editing: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
