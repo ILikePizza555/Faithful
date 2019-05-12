@@ -5,7 +5,9 @@
         </div>
         <div class="item flex-center-column">{{title}}</div>
         <div class="item flex-center-column">
-            <i class="material-icons">create</i>
+            <router-link :to="editLink">
+                <i class="material-icons">create</i>
+            </router-link>
         </div>
     </div>
 </template>
@@ -68,6 +70,16 @@ export default Vue.extend({
         "modelId": {
             type: String,
             required: true
+        }
+    },
+    computed: {
+        editLink() {
+            return {
+                name: "editList",
+                params: {
+                    id: this.modelId
+                }
+            }
         }
     }
 })
