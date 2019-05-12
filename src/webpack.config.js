@@ -55,6 +55,9 @@ module.exports = {
             template: path.resolve("src", "html", "app.pug"),
             chunks: ["app"],
             title: "Faithful",
+            styles: [
+                "https://fonts.googleapis.com/icon?family=Material+Icons"
+            ],
             scripts: [
                 "https://cdn.jsdelivr.net/npm/vue/dist/vue.js",
                 "https://unpkg.com/vuex@3.1.0/dist/vuex.js",
