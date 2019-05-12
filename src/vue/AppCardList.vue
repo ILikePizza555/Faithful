@@ -4,7 +4,7 @@
          :style="currentStyle">
         <app-bar 
             :title="activeModel.name"
-            :modelId="activeModel.id"></app-bar>
+            :modelId="id"></app-bar>
         <card-list
             v-on:update-activeitem="itemUpdateHandler($event)"
             v-on:update-viewingitem="itemUpdateHandler($event)"
@@ -29,13 +29,15 @@ import CardList, {UpdateActiveItemEvent} from "./CardList.vue";
 import TheAppBar from "./TheAppBar.vue";
 import {fromHex} from "../js/Color";
 
-type DataType = {
+interface AppCardList extends Vue {
     currentIndex: number;
+    id: string;
+    currentStyle: {[name: string]: string | number};
     activeModel: TodoListDocument;
 }
 
 export default Vue.extend({
-    data: function(): DataType {
+    data: function() {
         return {
             currentIndex: 0,
         }
@@ -47,7 +49,7 @@ export default Vue.extend({
         }
     },
     computed: {
-        currentStyle: function(): object {
+        currentStyle: function(this: AppCardList): object {
             const i: TodoListItem.TodoListItem = this.activeModel.items[this.currentIndex];
             const color = fromHex(i.background.color);
 
@@ -56,7 +58,7 @@ export default Vue.extend({
                 "color": color.luminance > (150 / 255) ? "#212121" : "#ffffff"
             }
         },
-        activeModel() {
+        activeModel(this: AppCardList) {
             return this.$store.getters.listById(this.id)
         }
     },
