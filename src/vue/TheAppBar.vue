@@ -4,7 +4,7 @@
             <router-link :to="backUrl" class="back-button flex-center-column"></router-link>
         </div>
         <div class="item flex-center-column">{{title}}</div>
-        <div class="item">Edit</div>
+        <div class="item flex-center-column">Edit</div>
     </div>
 </template>
 
@@ -30,7 +30,6 @@
     }
 
     > .item {
-        display: block;
         height: 100%;
     }
 }
@@ -56,9 +55,15 @@
 }
 </style>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
 export default Vue.extend({
-    
+    props: {
+        "backUrl": {
+            default: "/"
+        },
+        "title": String,
+
+    }
 })
 </script>
