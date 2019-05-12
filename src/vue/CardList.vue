@@ -29,25 +29,30 @@
 <script lang="ts">
 import Vue from "vue";
 import {Prop} from "vue/types/options";
-import EditCard from "./EditableCard.vue";
+import EditCard, { EditableCardInterface } from "./EditableCard.vue";
 import {TodoListItem, TodoListDocument} from "../store/Models";
+import {isElementInViewport} from "../js/Useful";
 import "vue-scrollto";
 
 export const UpdateActiveItemEvent = "update-activeitem";
+
 
 // In the template we have a cardList ref, which is an array of Card
 // we defines a type here that extends Vue with a $refs property so that Typescript
 // can properly match the type.
 type CardListComponent = Vue.VueConstructor<{
     $refs: {
-        cardList: Vue[]
+        container: Element,
+        cardList: EditableCardInterface[]
     }
 } & Vue>;
 
 export default (Vue as CardListComponent).extend({
     data: function () {
         return {
-            "activeItem": 0
+            "activeItem": 0,
+            "rateLimit": 30,
+            "rateLimitActive": false
         };
     },
     props: {
@@ -74,6 +79,28 @@ export default (Vue as CardListComponent).extend({
         mainClickHander() {
             if(!this.editing) {
                 this.move();
+            }
+        },
+        cardListScrollHandler(event: Event) {
+            const thisArg = this;
+            const cardList: EditableCardInterface[] = this.$refs.cardList;
+            const containerEl: Element = this.$refs.container;
+            const rateLimit: number = this.rateLimit;
+
+            // Rate limit the event handler
+            if(!this.rateLimitActive) {
+                // Handle the event instantanously, but asynchronously. 
+                setTimeout(() => {
+                    cardList.forEach((v, i) => {
+                        if(isElementInViewport(v.getInnerCardElement(), containerEl)) {
+                            console.log("Element " + i + " is in viewport");
+                        }
+                    })
+                }, 0);
+
+                // Reset the timeout flag after the rateLimit has been reached
+                setTimeout(() => {thisArg.rateLimitActive = false;}, rateLimit);
+                this.rateLimitActive = true;
             }
         }
     }
