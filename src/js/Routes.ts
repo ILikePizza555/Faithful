@@ -4,14 +4,15 @@
 import Vue from "vue";
 import VueRouter, { RouterOptions } from "vue-router";
 
-import CardListApp from "../vue/CardListApp.vue";
-import UserPageApp from "../vue/UserPageApp.vue";
+import AppCardList from "../vue/AppCardList.vue";
+import AppUserPage from "../vue/AppUserPage.vue";
 
 Vue.use(VueRouter);
 
 export const routes = [
-    {path: "/", component: UserPageApp},
-    {path: "/list/:id", name: "list", component: CardListApp, props: true}
+    {path: "/", component: AppUserPage},
+    {path: "/list/:id", name: "list", component: AppCardList, props: true},
+    {path: "/list/edit/:id", name: "editList", component: AppCardList, props:true}
 ];
 
 /**
