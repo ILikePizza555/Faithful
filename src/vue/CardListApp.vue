@@ -2,7 +2,9 @@
     <div id="app-card-list" 
          class="full-page-container"
          :style="currentStyle">
-        <app-bar :title="activeModel.name"></app-bar>
+        <app-bar 
+            :title="activeModel.name"
+            :modelId="activeModel.id"></app-bar>
         <card-list
             v-on:update-activeitem="itemUpdateHandler($event)"
             v-on:update-viewingitem="itemUpdateHandler($event)"
