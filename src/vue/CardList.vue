@@ -41,6 +41,7 @@ import { setTimeout } from "timers";
 
 export const UpdateActiveItemEvent = "update-activeitem";
 export const UpdateViewingItemEvent = "update-viewingitem";
+export const CompletedEvent = "completed";
 
 
 // In the template we have a cardList ref, which is an array of Card
@@ -50,7 +51,7 @@ type CardListComponent = Vue.VueConstructor<{
     $refs: {
         container: Element,
         cardList: EditableCardInterface[],
-        endcard: TheEndCardInterface
+        endCard: TheEndCardInterface
     }
 } & Vue>;
 
@@ -90,6 +91,7 @@ export default (Vue as CardListComponent).extend({
                     this.$scrollTo(this.$refs.endCard.$el as HTMLElement, 500, {container: "#card-list-container"}),
                     300);
                 this.$emit(UpdateActiveItemEvent, i);
+                this.$emit(CompletedEvent);
             }
         },
         mainClickHander() {
