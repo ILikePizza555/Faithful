@@ -42,6 +42,11 @@ a button which adds a new entry into the list. -->
 
 <script lang="ts">
 import Vue from 'vue'
+
+export interface TheEndCardInterface extends Vue {
+    editing: boolean
+}
+
 export default Vue.extend({
     props: {
         "editing": {
