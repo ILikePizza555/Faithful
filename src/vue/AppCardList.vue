@@ -56,6 +56,14 @@ export default Vue.extend({
     computed: {
         // NOTE: The `this` parameter is used by Typescript for type-checking. It is removed on compilation.
         currentStyle: function(this: AppCardList): object {
+            // Check for the case where we are on the end card
+            if(this.currentIndex == this.activeModel.items.length) {
+                return {
+                    "backgroundColor": "white",
+                    "color": "#212121"
+                };
+            }
+
             const i: TodoListItem.TodoListItem = this.activeModel.items[this.currentIndex];
             const color = fromHex(i.background.color);
 
