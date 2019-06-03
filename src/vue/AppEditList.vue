@@ -38,7 +38,10 @@ export default Vue.extend({
         handleEditDone() {
             this.$store.dispatch("saveList", this.id)
             .then(
-                _ => console.info(`[AppEditList] Successfully updated ${this.id}`)
+                _ => {
+                    console.info(`[AppEditList] Successfully updated ${this.id}`);
+                    this.$router.push({name: "list", params: {id: this.id}});
+                }
             ).catch(
                 reason => console.error(`[AppEditList] Could not update ${this.id}: ${reason}`)
             )
