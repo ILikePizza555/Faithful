@@ -64,4 +64,18 @@ export class TodoListDocument {
         this.name = this._document.get("name");
         this.items = this._document.get("items");
     }
+
+    /**
+     * Updates the documents on Firebase.
+     * 
+     * Returns the same promise created by a call to DocumentReference.update()
+     */
+    public updateDocument(collection: CollectionRef): Promise<void> {
+        return collection.doc(this.id).update({
+            owner: this.ownerUID,
+            created_date: this.dateCreated,
+            name: this.name,
+            items: this.items
+        });
+    }
 }
