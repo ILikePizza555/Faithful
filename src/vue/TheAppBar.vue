@@ -15,7 +15,7 @@
             </router-link>
             <a
                 href="#"
-                v-else="editing" 
+                v-else
                 @click="$emit('edit-done')">
                 <i class="material-icons">done</i>
             </a>
