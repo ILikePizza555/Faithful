@@ -56,6 +56,7 @@ module.exports = {
             chunks: ["app"],
             title: "Faithful",
             styles: [
+                "https://unpkg.com/normalize.css@8.0.1/normalize.css",
                 "https://fonts.googleapis.com/icon?family=Material+Icons"
             ],
             scripts: [
@@ -77,6 +78,7 @@ module.exports = {
             chunks: ["index"],
             title: "Faithful",
             styles: [
+                "https://unpkg.com/normalize.css@8.0.1/normalize.css",
                 "https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"
             ],
             scripts: [
