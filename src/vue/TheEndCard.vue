@@ -4,10 +4,11 @@ a button which adds a new entry into the list. -->
     <div class="card-container viewport">
         <section class="card">
             <button
+                class="add-button"
                 @click="$emit('newItemClick')"
                 v-if="editing">
                 <i class="material-icons">add</i>
-                Add new item
+                <span class="button-text">Add new item</span>
             </button>
             <p v-else>
                 🎉 You've completed everything! Good job!
@@ -15,6 +16,30 @@ a button which adds a new entry into the list. -->
         </section>
     </div>
 </template>
+
+<style lang="scss">
+@import "../sass/card";
+
+.add-button {
+    border: none;
+    background: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    .material-icons {
+        vertical-align: middle !important;
+        line-height: 1.15;
+    }
+
+    .button-text {
+        vertical-align: middle !important;
+        line-height: 1.15;
+    }
+}
+</style>
+
 
 
 <script lang="ts">
