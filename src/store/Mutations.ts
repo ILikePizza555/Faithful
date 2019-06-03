@@ -2,7 +2,7 @@ import firebase from "firebase"
 
 export const updateUser = "updateUser";
 
-export const pushServerChange = "pushServerChange";
+export const recieveServerChange = "recieveServerChange";
 export const updateTodoItem = "updateTodoItem";
 
 export const mutationsObj = {

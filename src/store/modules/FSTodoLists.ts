@@ -1,5 +1,5 @@
 import Vue from "vue";
-import {pushServerChange, updateTodoItem} from "../Mutations";
+import {recieveServerChange, updateTodoItem} from "../Mutations";
 import {firestore} from "firebase";
 import {TodoListDocument, TodoListItem} from "../Models";
 import { Module } from "vuex";
@@ -22,7 +22,7 @@ export const FSTodoLists: Module<FSTodoListsState, any> = {
         }
     },
     mutations: {
-        [pushServerChange](state: FSTodoListsState, docChange: firestore.DocumentChange) {
+        [recieveServerChange](state: FSTodoListsState, docChange: firestore.DocumentChange) {
             const docId = docChange.doc.id;
             
             //Have to follow Vue's reactivity rules. Meaning we can't add new fields normally.
