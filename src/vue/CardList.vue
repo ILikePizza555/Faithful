@@ -11,7 +11,8 @@
                     :editing="editing"
                     :key="item.id"
                     ref="cardList"></card>
-                <end-card :editing="editing"></end-card>
+                <end-card :editing="editing"
+                          ref="endCard"></end-card>
             </main>
         </div>
     </div>
@@ -31,10 +32,11 @@
 import Vue from "vue";
 import {Prop} from "vue/types/options";
 import EditCard, { EditableCardInterface } from "./EditableCard.vue";
-import EndCard from "./TheEndCard.vue";
+import EndCard, { TheEndCardInterface } from "./TheEndCard.vue";
 import {TodoListItem, TodoListDocument} from "../store/Models";
 import {isElementInViewport, rateLimit} from "../js/Useful";
 import "vue-scrollto";
+import { setTimeout } from "timers";
 
 export const UpdateActiveItemEvent = "update-activeitem";
 export const UpdateViewingItemEvent = "update-viewingitem";
@@ -46,7 +48,8 @@ export const UpdateViewingItemEvent = "update-viewingitem";
 type CardListComponent = Vue.VueConstructor<{
     $refs: {
         container: Element,
-        cardList: EditableCardInterface[]
+        cardList: EditableCardInterface[],
+        endcard: TheEndCardInterface
     }
 } & Vue>;
 
@@ -74,12 +77,19 @@ export default (Vue as CardListComponent).extend({
         move(itemNumber?: number) {
             const i: number = typeof(itemNumber) === "number" ? itemNumber : this.activeItem + 1;
 
-            this.activeItem = i;
-            setTimeout(() => 
-                this.$scrollTo(this.$refs.cardList[i].$el as HTMLElement, 500, {container: "#card-list-container"}),
-                300);
-
-            this.$emit(UpdateActiveItemEvent, i);
+            if(i < this.$refs.cardList.length) {
+                this.activeItem = i;
+                setTimeout(() => 
+                    this.$scrollTo(this.$refs.cardList[i].$el as HTMLElement, 500, {container: "#card-list-container"}),
+                    300);
+                this.$emit(UpdateActiveItemEvent, i);
+            } else if (i == this.$refs.cardList.length) {
+                this.activeItem = i;
+                setTimeout(() =>
+                    this.$scrollTo(this.$refs.endCard.$el as HTMLElement, 500, {container: "#card-list-container"}),
+                    300);
+                this.$emit(UpdateActiveItemEvent, i);
+            }
         },
         mainClickHander() {
             if(!this.editing) {
