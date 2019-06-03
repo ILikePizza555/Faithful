@@ -1,4 +1,7 @@
-import {FTimestamp, FDocumentSnap} from "../js/Firebase";
+import {firebase} from "../js/Firebase";
+import TimeStamp = firebase.firestore.Timestamp;
+import DocumentSnap = firebase.firestore.DocumentSnapshot;
+import CollectionRef = firebase.firestore.CollectionReference;
 
 export namespace TodoListItem {
     export interface TodoListItem {
@@ -49,12 +52,12 @@ export class TodoListDocument {
 
     public readonly id: string;
     public readonly ownerUID: string;
-    public readonly dateCreated: FTimestamp;
+    public readonly dateCreated: TimeStamp;
 
     public name: string;
     public items: TodoListItem.TodoListItem[];
 
-    public constructor(private _document: FDocumentSnap) {
+    public constructor(private _document: DocumentSnap) {
         this.id = _document.id;
         this.ownerUID = this._document.get("owner");
         this.dateCreated = this._document.get("created_date");
