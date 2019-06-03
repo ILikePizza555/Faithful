@@ -6,13 +6,11 @@ import { Module } from "vuex";
 
 interface FSTodoListsState {
     userTodoLists: Map<string, TodoListDocument>;
-    changes: TodoListItem.Modification[];
 }
 
 export const FSTodoLists: Module<FSTodoListsState, any> = {
     state: {
-        userTodoLists: new Map<string, TodoListDocument>(),
-        changes: []
+        userTodoLists: new Map<string, TodoListDocument>()
     },
     getters: {
         getUserTodoLists(state): IterableIterator<TodoListDocument> {
@@ -36,8 +34,6 @@ export const FSTodoLists: Module<FSTodoListsState, any> = {
         [updateTodoItem](state: FSTodoListsState, itemChange: TodoListItem.Modification) {
             const tdList = state.userTodoLists.get(itemChange.todoListId);
             if(!tdList) { throw new Error("[mutation:updateTodoItem] Invalid list id: " + itemChange.todoListId); }
-
-            state.changes.push(itemChange);
 
             if(itemChange.type == "add") {
                 tdList.items.push(itemChange.change);
