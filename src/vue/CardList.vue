@@ -12,6 +12,7 @@
                     :key="item.id"
                     ref="cardList"></card>
                 <end-card :editing="editing"
+                          :index="model.items.length"
                           ref="endCard"></end-card>
             </main>
         </div>
@@ -86,7 +87,7 @@ export default (Vue as CardListComponent).extend({
             } else if (i == this.$refs.cardList.length) {
                 this.activeItem = i;
                 setTimeout(() =>
-                    this.$scrollTo(this.$refs.endCard as HTMLElement, 500, {container: "#card-list-container"}),
+                    this.$scrollTo(this.$refs.endCard.$el as HTMLElement, 500, {container: "#card-list-container"}),
                     300);
                 this.$emit(UpdateActiveItemEvent, i);
             }
@@ -99,7 +100,7 @@ export default (Vue as CardListComponent).extend({
         updateViewingItem(index: number) {
             if(index < 0) {
                 throw new Error("Index out of range: " + index);
-            } else if (index >= this.model.items.length) {
+            } else if (index > this.model.items.length) {
                 throw new Error("Index out of range(max: " + this.model.items.length +"): " + index);
             }
 
@@ -107,10 +108,12 @@ export default (Vue as CardListComponent).extend({
             this.$emit(UpdateViewingItemEvent, index);
         },
         cardListScrollHandler: rateLimit(30, function(this: any, event: Event) {
-            const cardList: EditableCardInterface[] = this.$refs.cardList;
+            const cardList: any[] = this.$refs.cardList;
+            cardList.push(this.$refs.endCard)
+
             const containerEl: Element = this.$refs.container;
 
-            cardList.forEach(function(this: any, v: EditableCardInterface) {
+            cardList.forEach(function(this: any, v: any) {
                 const offset = {
                     top: 30,
                     left: 0,
