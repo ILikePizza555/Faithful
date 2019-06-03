@@ -40,8 +40,6 @@ a button which adds a new entry into the list. -->
 }
 </style>
 
-
-
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
