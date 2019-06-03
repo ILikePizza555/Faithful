@@ -10,9 +10,9 @@ a button which adds a new entry into the list. -->
                 <i class="material-icons">add</i>
                 <span class="button-text">Add new item</span>
             </button>
-            <p v-else>
+            <h2 v-else>
                 🎉 You've completed everything! Good job!
-            </p>
+            </h2>
         </section>
     </div>
 </template>
