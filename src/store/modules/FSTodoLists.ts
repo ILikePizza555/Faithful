@@ -3,6 +3,7 @@ import {pushServerChange, updateTodoItem} from "../Mutations";
 import {firestore} from "firebase";
 import {TodoListDocument, TodoListItem} from "../Models";
 import { Module } from "vuex";
+import { collections } from "../../js/Firebase";
 
 interface FSTodoListsState {
     userTodoLists: Map<string, TodoListDocument>;
@@ -50,6 +51,12 @@ export const FSTodoLists: Module<FSTodoListsState, any> = {
             }
 
             state.userTodoLists.set(tdList.id, tdList);
+        }
+    },
+    actions: {
+        saveList(context, id: string) {
+            const list: TodoListDocument = context.getters.listById(id);
+            return list.updateDocument(collections.lists);
         }
     }
 }
