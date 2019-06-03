@@ -11,6 +11,7 @@
                     :editing="editing"
                     :key="item.id"
                     ref="cardList"></card>
+                <end-card :editing="editing"></end-card>
             </main>
         </div>
     </div>
@@ -30,6 +31,7 @@
 import Vue from "vue";
 import {Prop} from "vue/types/options";
 import EditCard, { EditableCardInterface } from "./EditableCard.vue";
+import EndCard from "./TheEndCard.vue";
 import {TodoListItem, TodoListDocument} from "../store/Models";
 import {isElementInViewport, rateLimit} from "../js/Useful";
 import "vue-scrollto";
@@ -66,6 +68,7 @@ export default (Vue as CardListComponent).extend({
     },
     components: {
         "card": EditCard,
+        "end-card": EndCard
     },
     methods: {
         move(itemNumber?: number) {
