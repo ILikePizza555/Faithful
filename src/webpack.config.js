@@ -60,7 +60,7 @@ module.exports = {
             ],
             scripts: [
                 "https://cdn.jsdelivr.net/npm/vue/dist/vue.js",
-                "https://unpkg.com/vuex@3.1.0/dist/vuex.js",
+                "https://unpkg.com/vuex@3.1.1/dist/vuex.js",
                 "https://unpkg.com/vue-router/dist/vue-router.js",
                 "https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js",
                 "https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js",
