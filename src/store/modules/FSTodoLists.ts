@@ -14,9 +14,6 @@ export const FSTodoLists: Module<FSTodoListsState, any> = {
         userTodoLists: new Map<string, TodoListDocument>()
     },
     getters: {
-        getUserTodoLists(state): IterableIterator<TodoListDocument> {
-            return state.userTodoLists.values();
-        },
         listById(state) { 
             return (id: string) => state.userTodoLists.get(id);
         }

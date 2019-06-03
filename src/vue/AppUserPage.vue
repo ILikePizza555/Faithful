@@ -4,7 +4,7 @@
         <h1>Hello {{$store.getters.displayName}}.</h1>
         <h2>What are we doing today?</h2>
         <div id="tl-list">
-            <router-link v-for="i in $store.getters.getUserTodoLists"
+            <router-link v-for="i in $store.state.fsLists.userTodoLists.values()"
                  v-bind:key="i.id"
                  :to="{name: 'list', params: {id: i.id}}"
                  class="list-item">
