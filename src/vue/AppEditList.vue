@@ -6,7 +6,7 @@
             :editing="true"
             :title="'Editing: ' + activeModel.name"
             :modelId="id"
-            @app-back="$router.push('/')"
+            @app-back="$router.push({name: 'list', params: {id: id}})"
             @edit-done="handleEditDone()"></app-bar>
         <card-list
             :editing="true"
