@@ -86,7 +86,7 @@ export default (Vue as CardListComponent).extend({
             } else if (i == this.$refs.cardList.length) {
                 this.activeItem = i;
                 setTimeout(() =>
-                    this.$scrollTo(this.$refs.endCard.$el as HTMLElement, 500, {container: "#card-list-container"}),
+                    this.$scrollTo(this.$refs.endCard as HTMLElement, 500, {container: "#card-list-container"}),
                     300);
                 this.$emit(UpdateActiveItemEvent, i);
             }
