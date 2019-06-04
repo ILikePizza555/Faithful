@@ -10,9 +10,7 @@
                     :to="{name: 'list', params: {id: i.id}}"
                     class="list-item">{{i.name}}</router-link>
             </div>
-            <div class="list-item">
-                <a href="#" class="list-item">New List</a>
-            </div>
+            <link-box class="list-item">New Item</link-box>
         </div>
     </div>
 </template>
@@ -28,7 +26,11 @@
 
 <script lang="ts">
 import Vue from "vue"
+import LinkBox from "./LinkBox.vue"
 
 export default Vue.extend({
+    components: {
+        "link-box": LinkBox
+    }
 })
 </script>
