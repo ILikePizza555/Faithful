@@ -5,6 +5,7 @@ When done, an event is fired with the textbox data as the payload -->
         <div class="textbox-container"
              v-if="hit">
              <input type="text"
+                    :placeholder="placeholder"
                     :value="inputText">
              <button v-if="confirmButton"
                      @click="$emit(ConfirmEvent, inputText)">{{confirmButton}}</button> 
@@ -37,7 +38,8 @@ export default Vue.extend({
         confirmButton: {
             type: String,
             default: "OK"
-        }
+        },
+        placeholder: String
     }
 })
 </script>
