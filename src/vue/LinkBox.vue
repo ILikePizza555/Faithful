@@ -5,10 +5,11 @@ When done, an event is fired with the textbox data as the payload -->
         <div class="textbox-container"
              v-if="hit">
              <input type="text"
+                    v-model="inputText"
                     :placeholder="placeholder"
                     :value="inputText">
              <button v-if="confirmButton"
-                     @click="$emit(ConfirmEvent, inputText)">{{confirmButton}}</button> 
+                     @click="$emit('confirm-linkbox', inputText)">{{confirmButton}}</button> 
         </div>
         <div class="link"
              v-else>
@@ -24,8 +25,6 @@ When done, an event is fired with the textbox data as the payload -->
 
 <script lang="ts">
 import Vue from 'vue'
-
-export const ConfirmEvent = "confirm-linkbox";
 
 export default Vue.extend({
     data: function() {
