@@ -17,6 +17,11 @@ export const FSTodoLists: Module<FSTodoListsState, any> = {
         allListIds(state) {
             return Object.getOwnPropertyNames(state.userTodoLists).filter(v => v != "__ob__");
         },
+        allLists(state) {
+            return Object.getOwnPropertyNames(state.userTodoLists)
+                .filter(v => v != "__ob__")
+                .map(v => state.userTodoLists[v])
+        },
         listById(state) { 
             return (id: string) => state.userTodoLists[id];
         }
