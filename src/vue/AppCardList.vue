@@ -57,9 +57,9 @@ export default Vue.extend({
         // NOTE: The `this` parameter is used by Typescript for type-checking. It is removed on compilation.
         currentStyle: function(this: AppCardList): object {
             // Check for the case where we are on the end card
-            if(this.currentIndex == this.activeModel.items.length) {
+            if(this.currentIndex == this.activeModel.items.length || !this.activeModel.items[this.currentIndex].background) {
                 return {
-                    "backgroundColor": "white",
+                    "backgroundColor": "fff9f4",
                     "color": "#212121"
                 };
             }
