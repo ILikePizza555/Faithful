@@ -4,9 +4,9 @@
         <h1>Hello {{$store.getters.displayName}}.</h1>
         <h2>What are we doing today?</h2>
         <div id="tl-list">
-            <div>
-                <router-link v-for="i in $store.getters.allLists"
-                    v-bind:key="i.id"
+            <div v-for="i in $store.getters.allLists"
+                 :key="i.id">
+                <router-link
                     :to="{name: 'list', params: {id: i.id}}"
                     class="list-item">{{i.name}}</router-link>
             </div>
