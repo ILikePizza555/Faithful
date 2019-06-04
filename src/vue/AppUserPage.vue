@@ -4,12 +4,15 @@
         <h1>Hello {{$store.getters.displayName}}.</h1>
         <h2>What are we doing today?</h2>
         <div id="tl-list">
-            <router-link v-for="i in $store.getters.allLists"
-                 v-bind:key="i.id"
-                 :to="{name: 'list', params: {id: i.id}}"
-                 class="list-item">
-                <div class="list-item">{{i.name}}</div>
-            </router-link>
+            <div>
+                <router-link v-for="i in $store.getters.allLists"
+                    v-bind:key="i.id"
+                    :to="{name: 'list', params: {id: i.id}}"
+                    class="list-item">{{i.name}}</router-link>
+            </div>
+            <div class="list-item">
+                <a href="#" class="list-item">New List</a>
+            </div>
         </div>
     </div>
 </template>
@@ -19,7 +22,7 @@
 
 #tl-list {
     display: flex;
-    
+    flex-direction: column;
 }
 </style>
 
