@@ -6,16 +6,19 @@ import { Module } from "vuex";
 import { collections } from "../../js/Firebase";
 
 interface FSTodoListsState {
-    userTodoLists: Map<string, TodoListDocument>;
+    userTodoLists: {[id: string]: TodoListDocument};
 }
 
 export const FSTodoLists: Module<FSTodoListsState, any> = {
     state: {
-        userTodoLists: new Map<string, TodoListDocument>()
+        userTodoLists: {}
     },
     getters: {
+        allListIds(state) {
+            return Object.getOwnPropertyNames(state.userTodoLists).filter(v => v != "__ob__");
+        },
         listById(state) { 
-            return (id: string) => state.userTodoLists.get(id);
+            return (id: string) => state.userTodoLists[id];
         }
     },
     mutations: {
@@ -24,13 +27,13 @@ export const FSTodoLists: Module<FSTodoListsState, any> = {
             
             //Have to follow Vue's reactivity rules. Meaning we can't add new fields normally.
             if(docChange.type == "added" || docChange.type == "modified") {
-                state.userTodoLists.set(docId, new TodoListDocument(docChange.doc));
+                Vue.set(state.userTodoLists, docId, new TodoListDocument(docChange.doc));
             } else if(docChange.type == "removed") {
-                state.userTodoLists.delete(docId);
+                Vue.delete(state.userTodoLists, docId);
             }
         },
         [updateTodoItem](state: FSTodoListsState, itemChange: TodoListItem.Modification) {
-            const tdList = state.userTodoLists.get(itemChange.todoListId);
+            const tdList = state.userTodoLists[itemChange.todoListId];
             if(!tdList) { throw new Error("[mutation:updateTodoItem] Invalid list id: " + itemChange.todoListId); }
 
             if(itemChange.type == "add") {
@@ -46,8 +49,6 @@ export const FSTodoLists: Module<FSTodoListsState, any> = {
                 // This shouldn't happen, but just in case.
                 throw new Error("[mutation:updateTodoItem] Invalid modification type: " + (itemChange as any).type);
             }
-
-            state.userTodoLists.set(tdList.id, tdList);
         }
     },
     actions: {
