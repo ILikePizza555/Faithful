@@ -2,6 +2,7 @@ import {firebase} from "../js/Firebase";
 import TimeStamp = firebase.firestore.Timestamp;
 import DocumentSnap = firebase.firestore.DocumentSnapshot;
 import CollectionRef = firebase.firestore.CollectionReference;
+import DocumentRef = firebase.firestore.DocumentReference;
 
 export namespace TodoListItem {
     export interface TodoListItem {
@@ -56,6 +57,15 @@ export class TodoListDocument {
 
     public name: string;
     public items: TodoListItem.TodoListItem[];
+
+    public static createDocument(collection: CollectionRef, name: string, userUID: string): Promise<DocumentRef> {
+        return collection.add({
+            name: name,
+            owner: userUID,
+            created_date: TimeStamp.now(),
+            items: []
+        })
+    }
 
     public constructor(private _document: DocumentSnap) {
         this.id = _document.id;
