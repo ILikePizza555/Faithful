@@ -13,6 +13,7 @@
                     ref="cardList"></card>
                 <end-card :editing="editing"
                           :index="model.items.length"
+                          @newitem-click="addItemHandler()"
                           ref="endCard"></end-card>
             </main>
         </div>
@@ -38,6 +39,7 @@ import {TodoListItem, TodoListDocument} from "../store/Models";
 import {isElementInViewport, rateLimit} from "../js/Useful";
 import "vue-scrollto";
 import { setTimeout } from "timers";
+import { updateTodoItem } from "../store/Mutations";
 
 export const UpdateActiveItemEvent = "update-activeitem";
 export const UpdateViewingItemEvent = "update-viewingitem";
@@ -98,6 +100,19 @@ export default (Vue as CardListComponent).extend({
             if(!this.editing) {
                 this.move();
             }
+        },
+        addItemHandler() {
+            if(!this.editing) {
+                console.warn("[CardList] addItemHandler() called when not editing! Ignored...");
+                return;
+            }
+
+            this.$store.commit(updateTodoItem, {
+                todoListId: this.model.id,
+                itemId: -1,
+                type: "add",
+                change: {id: this.model.items.length, title: null, background: null}
+            });
         },
         updateViewingItem(index: number) {
             if(index < 0) {
