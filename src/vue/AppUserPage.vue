@@ -10,7 +10,8 @@
                     :to="{name: 'list', params: {id: i.id}}"
                     class="list-item">{{i.name}}</router-link>
             </div>
-            <link-box class="list-item" 
+            <link-box id="link-box"
+                      class="list-item" 
                       placeholder="New list name"
                       @confirm-linkbox="newListHandler">New Item</link-box>
         </div>
@@ -23,6 +24,10 @@
 #tl-list {
     display: flex;
     flex-direction: column;
+}
+
+#link-box {
+    margin-top: 1em;
 }
 </style>
 
