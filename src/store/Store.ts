@@ -19,6 +19,12 @@ export const store = new Vuex.Store<any>({
                 return state.userInfo.displayName
             }
             return null;
+        },
+        uid: state => {
+            if(state.userInfo) {
+                return state.userInfo.uid;
+            }
+            return null;
         }
     },
     mutations
