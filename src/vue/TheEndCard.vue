@@ -5,7 +5,7 @@ a button which adds a new entry into the list. -->
         <section class="card">
             <button
                 class="add-button"
-                @click="$emit('newItemClick')"
+                @click="$emit('newitem-click')"
                 v-if="editing">
                 <i class="material-icons">add</i>
                 <span class="button-text">Add new item</span>
