@@ -110,8 +110,8 @@ export default (Vue as CardListComponent).extend({
             this.$emit(UpdateViewingItemEvent, index);
         },
         cardListScrollHandler: rateLimit(30, function(this: any, event: Event) {
-            const cardList: any[] = this.$refs.cardList;
-            cardList.push(this.$refs.endCard)
+            const cardList: any[] = (this.$refs.cardList as any[]).slice();
+            cardList.push(this.$refs.endCard);
 
             const containerEl: Element = this.$refs.container;
 
