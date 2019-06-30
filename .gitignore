@@ -13,3 +13,6 @@ __pycache__
 
 src/server/server_conf.json
 src/FirebaseConfig.ts
+
+.firebaserc
+.firebase
