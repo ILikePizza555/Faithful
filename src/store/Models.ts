@@ -1,4 +1,4 @@
-import {firebase} from "../js/Firebase";
+import {firebase} from "../script/Firebase";
 import TimeStamp = firebase.firestore.Timestamp;
 import DocumentSnap = firebase.firestore.DocumentSnapshot;
 import CollectionRef = firebase.firestore.CollectionReference;
