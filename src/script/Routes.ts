@@ -4,6 +4,7 @@
 import Vue from "vue";
 import VueRouter, { RouterOptions } from "vue-router";
 
+import AppIndex from "../vue/AppIndex.vue";
 import AppCardList from "../vue/AppCardList.vue";
 import AppUserPage from "../vue/AppUserPage.vue";
 import AppEditList from "../vue/AppEditList.vue";
@@ -11,7 +12,8 @@ import AppEditList from "../vue/AppEditList.vue";
 Vue.use(VueRouter);
 
 export const routes = [
-    {path: "/", component: AppUserPage},
+    {path: "/", component: AppIndex},
+    {path: "/user", component: AppUserPage},
     {path: "/list/:id", name: "list", component: AppCardList, props: true},
     {path: "/list/edit/:id", name: "editList", component: AppEditList, props:true}
 ];
