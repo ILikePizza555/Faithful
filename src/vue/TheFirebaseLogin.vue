@@ -21,7 +21,7 @@ export default Vue.extend({
                 return this.onSuccess(authResult) || false;
             }
 
-            this.$router.push(this.onSuccess)
+            this.$router.push(this.onSuccess);
         }
 
         const uiConfig = {
