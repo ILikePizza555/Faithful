@@ -22,7 +22,7 @@ export const routes = [
  * Returns a new VueRouter with the provided options and routes as defined in `routes`.
  * @param options 
  */
-export function createRouter(options: RouterOptions): VueRouter {
+export function createRouter(options?: RouterOptions): VueRouter {
     return new VueRouter({
         ...options,
         routes
