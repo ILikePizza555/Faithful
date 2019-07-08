@@ -7,7 +7,7 @@
                 p Build habits and manage your life with Faithful.
             div.login-block
                 p Let's get started:
-                div#firebaseui-auth-container
+                firebase-auth-ui(onSuccess="/user")
 </template>
 
 <style lang="scss">
@@ -15,7 +15,10 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import TheFirebaseLogin from "./TheFirebaseLogin.vue";
 export default Vue.extend({
-    
+    components: {
+        "firebase-auth-ui": TheFirebaseLogin
+    }
 })
 </script>
