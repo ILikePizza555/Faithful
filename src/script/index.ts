@@ -12,6 +12,8 @@ const vm = new Vue({
     template: "<router-view></router-view>"
 });
 
+vm.$mount("#mount-point");
+
 /**
  * The initalization process.
  * 
@@ -45,9 +47,10 @@ firebase.auth().onAuthStateChanged(
                     console.error("[QuerySnapshotHandler]" + err);
                 }
             })
-        } else if(!user && !queryUnsub) {
+        } else if(!user && queryUnsub != null) {
             // User has logged out, unsubscribe from any further snapshot events.
-            queryUnsub();
+            //queryUnsub();
+            console.log("Logout")
         }
     },
     function authStateError(err) {
