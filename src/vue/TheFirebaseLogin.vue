@@ -1,6 +1,6 @@
 <!-- Firebase login component -->
 <template>
-    <div id="firebase-auth-container" ref="fbui"></div>
+    <div id="firebase-auth-container"></div>
 </template>
 
 <script lang="ts">
@@ -33,7 +33,7 @@ export default Vue.extend({
 
         console.log("[TheFirebaseLogin.vue] Starting firebase auth ui...");
         const ui = new firebaseui.auth.AuthUI(firebase.auth());
-        ui.start(this.$refs.fbui, uiConfig);
+        ui.start(this.$el, uiConfig);
     }
 })
 </script>
