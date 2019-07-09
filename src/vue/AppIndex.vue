@@ -11,6 +11,19 @@
 </template>
 
 <style lang="scss">
+@import "../sass/variables.scss";
+
+.index-header {
+    background-image: linear-gradient(#ffd9b8, $page-bg-color);
+
+    height: 60vh;
+
+    padding: 8px;
+
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 </style>
 
 <script lang="ts">
