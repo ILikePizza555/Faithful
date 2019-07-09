@@ -32,8 +32,16 @@ module.exports = {
                 ]
             },
             { 
-                test: /\.pug$/, 
-                loader: "pug-plain-loader"
+                test: /\.pug$/,
+                oneOf: [
+                    {
+                        resourceQuery: /^\?vue/,
+                        use: "pug-plain-loader"
+                    },
+                    {
+                        use: "pug-loader"
+                    }
+                ]
             },
             {
                 test: /\.(html)$/,
