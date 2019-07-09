@@ -35,7 +35,7 @@
 import Vue from "vue"
 import {TodoListDocument} from "../store/Models";
 import LinkBox from "./LinkBox.vue"
-import { collections } from "../js/Firebase";
+import { collections } from "../script/Firebase";
 
 export default Vue.extend({
     components: {

@@ -28,7 +28,7 @@ import {Prop} from "vue/types/options";
 import {TodoListDocument, TodoListItem} from "../store/Models";
 import CardList, {UpdateActiveItemEvent} from "./CardList.vue";
 import TheAppBar from "./TheAppBar.vue";
-import {fromHex} from "../js/Color";
+import {fromHex} from "../script/Color";
 
 /**
  * The type of of an instance of this Vue component.

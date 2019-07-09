@@ -36,7 +36,7 @@ import {Prop} from "vue/types/options";
 import EditCard, { EditableCardInterface } from "./EditableCard.vue";
 import EndCard, { TheEndCardInterface } from "./TheEndCard.vue";
 import {TodoListItem, TodoListDocument} from "../store/Models";
-import {isElementInViewport, rateLimit} from "../js/Useful";
+import {isElementInViewport, rateLimit} from "../script/Useful";
 import "vue-scrollto";
 import { setTimeout } from "timers";
 import { updateTodoItem } from "../store/Mutations";
