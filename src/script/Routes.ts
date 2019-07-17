@@ -15,8 +15,7 @@ export const routes = [
     {path: "/", component: AppIndex},
     {path: "/user", name: "userPage", component: AppUserPage},
     {path: "/list/:id", name: "list", component: AppCardList, props: true},
-    {path: "/list/edit/:id", name: "editList", component: AppEditList, props:true},
-    {path: "*", redirect: "userPage"}
+    {path: "/list/edit/:id", name: "editList", component: AppEditList, props:true}
 ];
 
 /**
