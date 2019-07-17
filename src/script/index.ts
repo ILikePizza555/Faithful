@@ -7,7 +7,7 @@ import {store} from "../store/Store";
 import {updateUser, recieveServerChange} from "../store/Mutations";
 
 const vm = new Vue({
-    router: createRouter(),
+    router: createRouter(firebase.auth()),
     store,
     template: "<router-view></router-view>"
 });
