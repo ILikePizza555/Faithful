@@ -2,7 +2,7 @@
  * This modules defines all the routes for tha app.
  */
 import Vue from "vue";
-import VueRouter, { RouterOptions } from "vue-router";
+import VueRouter, { RouterOptions} from "vue-router";
 
 import AppIndex from "../vue/AppIndex.vue";
 import AppCardList from "../vue/AppCardList.vue";
@@ -43,10 +43,27 @@ export const routes = [
  * Returns a new VueRouter with the provided options and routes as defined in `routes`.
  * @param options 
  */
-export function createRouter(options?: RouterOptions): VueRouter {
-    return new VueRouter({
+export function createRouter(firebaseAuth: firebase.auth.Auth, options?: RouterOptions): VueRouter {
+    const router = new VueRouter({
         mode: "history",
         ...options,
         routes
     });
+
+    // Prevents the user from accessing pages if not logged in.
+    // Note that this doesn't ensure the user is allowed to see the page, just that the user is identified with firebase.
+    router.beforeEach((to, from, next) => {
+        const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
+        const userAuth = firebaseAuth.currentUser;
+
+        if(requiresAuth && !userAuth) {
+            next("/")
+        } else if (requiresAuth && userAuth) {
+            next()
+        } else {
+            next()
+        }
+    });
+
+    return router;
 }
