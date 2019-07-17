@@ -3,7 +3,7 @@ import {recieveServerChange, updateTodoItem} from "../Mutations";
 import {firestore} from "firebase";
 import {TodoListDocument, TodoListItem} from "../Models";
 import { Module } from "vuex";
-import { collections } from "../../js/Firebase";
+import { collections } from "../../script/Firebase";
 
 interface FSTodoListsState {
     userTodoLists: {[id: string]: TodoListDocument};

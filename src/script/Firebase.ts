@@ -11,7 +11,6 @@ export {firebase}
 
 firebase.initializeApp(firebaseConfig);
 
-
 export type FTimestamp = firebase.firestore.Timestamp;
 export type FCollectionRef = firebase.firestore.CollectionReference;
 export type FDocumentRef = firebase.firestore.DocumentReference;

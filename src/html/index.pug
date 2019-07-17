@@ -1,12 +1,18 @@
 doctype html
 html(lang="en")
     head
-        include head.pug
+        if htmlWebpackPlugin.options.meta
+            each content, name in htmlWebpackPlugin.options.meta
+                meta(name=name content=content)
+
+        if htmlWebpackPlugin.options.styles
+            each style in htmlWebpackPlugin.options.styles
+                link(type="text/css" rel="stylesheet" href=style)
+
+        if htmlWebpackPlugin.options.scripts
+            each script in htmlWebpackPlugin.options.scripts
+                script(type="text/javascript" src=script)
+
+        title= htmlWebpackPlugin.options.title
     body
-        header.index-header.block-container
-            div.info-block
-                h1 It's time to get things done.
-                p Build habits and manage your life with Faithful.
-            div.login-block
-                p Let's get started:
-                div#firebaseui-auth-container
+        div#mount-point

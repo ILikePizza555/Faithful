@@ -30,12 +30,12 @@ export default Vue.extend({
         }
     },
     computed: {
-        activeModel() {
+        activeModel(this: Vue & {id: string}) {
             return this.$store.getters.listById(this.id)
         }
     },
     methods: {
-        handleEditDone() {
+        handleEditDone(this: Vue & {id: string}) {
             this.$store.dispatch("saveList", this.id)
             .then(
                 _ => {
