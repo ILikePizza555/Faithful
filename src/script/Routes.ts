@@ -12,10 +12,31 @@ import AppEditList from "../vue/AppEditList.vue";
 Vue.use(VueRouter);
 
 export const routes = [
-    {path: "/", component: AppIndex},
-    {path: "/user", name: "userPage", component: AppUserPage},
-    {path: "/list/:id", name: "list", component: AppCardList, props: true},
-    {path: "/list/edit/:id", name: "editList", component: AppEditList, props:true}
+    {
+        path: "/", 
+        component: AppIndex, 
+        meta: {requiresAuth: false}
+    },
+    {
+        path: "/user", 
+        name: "userPage", 
+        component: AppUserPage, 
+        meta: {requiresAuth: true}
+    },
+    {
+        path: "/list/:id",
+        name: "list",
+        component: AppCardList,
+        props: true,
+        meta: {requiresAuth: true}
+    },
+    {
+        path: "/list/edit/:id",
+        name: "editList",
+        component: AppEditList,
+        props: true,
+        meta: {requiresAuth: true}
+    }
 ];
 
 /**
