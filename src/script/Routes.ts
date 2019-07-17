@@ -15,7 +15,8 @@ export const routes = [
     {path: "/", component: AppIndex},
     {path: "/user", name: "userPage", component: AppUserPage},
     {path: "/list/:id", name: "list", component: AppCardList, props: true},
-    {path: "/list/edit/:id", name: "editList", component: AppEditList, props:true}
+    {path: "/list/edit/:id", name: "editList", component: AppEditList, props:true},
+    {path: "*", redirect: "userPage"}
 ];
 
 /**
@@ -24,6 +25,7 @@ export const routes = [
  */
 export function createRouter(options?: RouterOptions): VueRouter {
     return new VueRouter({
+        mode: "history",
         ...options,
         routes
     });
