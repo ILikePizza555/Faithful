@@ -4,7 +4,8 @@ import {firebase, collections} from "./Firebase";
 import Vue from "vue";
 import {createRouter} from "./Routes";
 import {store} from "../store/Store";
-import {updateUser, recieveServerChange} from "../store/Mutations";
+import {Mutations as UserDataMutations} from "../store/modules/UserData";
+import { recieveServerChange } from "../store/Mutations";
 
 const vm = new Vue({
     router: createRouter(firebase.auth()),
@@ -14,43 +15,25 @@ const vm = new Vue({
 
 vm.$mount("#mount-point");
 
-/**
- * The initalization process.
- * 
- * First we setup a callback to run after firebase finishes getting the user authentication
- * information. Because most things are dependent on the user being authenticated, management of
- * other Firebase services, including Firestore snapshot subscriptions, is done in this callback.
- * 
- * TODO: Move this to Observables.
- */
-firebase.auth().onAuthStateChanged(
-    function authStateHandler(user) {
-        /** Unsubscribe function for the query snapshot listener. */
-        let queryUnsub = null;
-        let first = true;
+let unsubDocChanges = null;
 
-        store.commit(updateUser, user);
-
+// Keeps the login state synced on page refresh
+firebase.auth().onAuthStateChanged(function authStateHandler(user) {
         if(user) {
-            queryUnsub = collections.lists.where("owner", "==", user.uid).onSnapshot({
-                next: function(q) {
-                    q.docChanges().forEach(
-                        docChange => store.commit(recieveServerChange, docChange)
-                    );
+            store.commit(UserDataMutations.setCurrentUser, user);
+            store.dispatch("fetchUserProfile");
 
-                    if(first) {
-                        first = false;
-                        vm.$mount("#mount-point");
-                    }
+            // Setup snapshot listeners
+            unsubDocChanges = collections.lists.where("owner", "==", user.uid).onSnapshot({
+                next: function(query) {
+                    query.docChanges().forEach(
+                        change => store.commit(recieveServerChange, change)
+                    );
                 },
                 error: function(err) {
-                    console.error("[QuerySnapshotHandler]" + err);
+                    console.error("[QuerySnapshotHandler] " + err);
                 }
-            })
-        } else if(!user && queryUnsub != null) {
-            // User has logged out, unsubscribe from any further snapshot events.
-            //queryUnsub();
-            console.log("Logout")
+            });
         }
     },
     function authStateError(err) {
