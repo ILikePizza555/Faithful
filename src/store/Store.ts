@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import mutations from "./Mutations";
 import FSTodoLists from "./modules/FSTodoLists";
 import UserData from "./modules/FSTodoLists";
 
@@ -11,6 +10,5 @@ export const store = new Vuex.Store<any>({
     modules: {
         fsLists: FSTodoLists,
         userData: UserData
-    },
-    mutations
+    }
 });
