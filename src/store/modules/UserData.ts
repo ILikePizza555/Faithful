@@ -3,7 +3,7 @@ import {firebase, collections} from "../../script/Firebase";
 import {UserProfile} from "../Models";
 import {Module} from "vuex";
 
-namespace Mutations {
+export namespace Mutations {
     export const setCurrentUser = "setCurrentUser";
     export const setUserProfile = "setUserProfile";
 }
@@ -41,6 +41,11 @@ export const UserData: Module<UserDataState, any> = {
             commit(Mutations.setUserProfile, UserProfile.constructEmpty());
         },
         fetchUserProfile({commit, state}) {
+            if(!state.currentUser) {
+                console.error("[vuex;actions;fetchUserProfile] currentUser is null!");
+                return;
+            }
+
             collections.userInfo.doc(state.currentUser.uid).get().then(res => {
                 commit(Mutations.setUserProfile, res.data());
             }).catch(err => {
