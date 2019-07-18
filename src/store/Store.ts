@@ -12,22 +12,5 @@ export const store = new Vuex.Store<any>({
         fsLists: FSTodoLists,
         userData: UserData
     },
-    state: {
-        userInfo: null
-    },
-    getters: {
-        displayName: state => {
-            if(state.userInfo) { 
-                return state.userInfo.displayName
-            }
-            return null;
-        },
-        uid: state => {
-            if(state.userInfo) {
-                return state.userInfo.uid;
-            }
-            return null;
-        }
-    },
     mutations
 });

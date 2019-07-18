@@ -18,6 +18,23 @@ export const UserData: Module<UserDataState, any> = {
         currentUser: null,
         userProfile: UserProfile.constructEmpty()
     },
+    getters: {
+        displayName: state => {
+            if(state.userProfile.preferredName) {
+                return state.userProfile.preferredName;
+            } else if (state.currentUser) {
+                return state.currentUser.displayName;
+            } else {
+                return null;
+            }
+        },
+        uid: state => {
+            if(state.currentUser) {
+                return state.currentUser.uid;
+            }
+            return null;
+        }
+    },
     actions: {
         fetchUserProfile({commit, state}) {
             collections.userInfo.doc(state.currentUser.uid).get().then(res => {
