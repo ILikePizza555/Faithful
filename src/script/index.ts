@@ -15,7 +15,9 @@ const vm = new Vue({
 
 vm.$mount("#mount-point");
 
-let unsubDocChanges = null;
+// Variables holding the unsubscribe functions for various listeners.
+type OptionalMethod = (() => void) | null
+let unsubDocChanges: OptionalMethod = null;
 
 // Keeps the login state synced on page refresh
 firebase.auth().onAuthStateChanged(function authStateHandler(user) {
