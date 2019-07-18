@@ -36,6 +36,10 @@ export const UserData: Module<UserDataState, any> = {
         }
     },
     actions: {
+        clearUserData({commit, state}) {
+            commit(Mutations.setCurrentUser, null);
+            commit(Mutations.setUserProfile, UserProfile.constructEmpty());
+        },
         fetchUserProfile({commit, state}) {
             collections.userInfo.doc(state.currentUser.uid).get().then(res => {
                 commit(Mutations.setUserProfile, res.data());
