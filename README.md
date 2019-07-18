@@ -1,7 +1,3 @@
-# About this Branch
-
-Here we're refactoring faithful to a true single-page webapp. 
-
 # Faithful
 
 A time/life management webapp. Faithful is a collection of personal planning and orginization tools specifically designed to help people with ADHD manage their lives.
