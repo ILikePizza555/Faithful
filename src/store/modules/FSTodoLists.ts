@@ -1,10 +1,13 @@
 import Vue from "vue";
-import {recieveServerChange, updateTodoItem} from "../Mutations";
 import {firestore} from "firebase";
 import {TodoListDocument, TodoListItem} from "../Models";
 import { Module } from "vuex";
 import { collections } from "../../script/Firebase";
 
+export namespace Mutations {
+    export const recieveServerChange = "recieveServerChange";
+    export const updateTodoItem = "updateTodoItem";
+}
 interface FSTodoListsState {
     userTodoLists: {[id: string]: TodoListDocument};
 }
@@ -27,7 +30,7 @@ export const FSTodoLists: Module<FSTodoListsState, any> = {
         }
     },
     mutations: {
-        [recieveServerChange](state: FSTodoListsState, docChange: firestore.DocumentChange) {
+        [Mutations.recieveServerChange](state: FSTodoListsState, docChange: firestore.DocumentChange) {
             const docId = docChange.doc.id;
             
             //Have to follow Vue's reactivity rules. Meaning we can't add new fields normally.
@@ -37,7 +40,7 @@ export const FSTodoLists: Module<FSTodoListsState, any> = {
                 Vue.delete(state.userTodoLists, docId);
             }
         },
-        [updateTodoItem](state: FSTodoListsState, itemChange: TodoListItem.Modification) {
+        [Mutations.updateTodoItem](state: FSTodoListsState, itemChange: TodoListItem.Modification) {
             const tdList = state.userTodoLists[itemChange.todoListId];
             if(!tdList) { throw new Error("[mutation:updateTodoItem] Invalid list id: " + itemChange.todoListId); }
 
