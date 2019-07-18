@@ -5,7 +5,7 @@ import Vue from "vue";
 import {createRouter} from "./Routes";
 import {store} from "../store/Store";
 import {Mutations as UserDataMutations} from "../store/modules/UserData";
-import { recieveServerChange } from "../store/Mutations";
+import {Mutations as TodoListsMutations} from "../store/modules/FSTodoLists";
 
 const vm = new Vue({
     router: createRouter(firebase.auth()),
@@ -27,7 +27,7 @@ firebase.auth().onAuthStateChanged(function authStateHandler(user) {
             unsubDocChanges = collections.lists.where("owner", "==", user.uid).onSnapshot({
                 next: function(query) {
                     query.docChanges().forEach(
-                        change => store.commit(recieveServerChange, change)
+                        change => store.commit(TodoListsMutations.recieveServerChange, change)
                     );
                 },
                 error: function(err) {
