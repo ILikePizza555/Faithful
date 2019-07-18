@@ -3,12 +3,14 @@ import Vuex from "vuex";
 
 import mutations from "./Mutations";
 import FSTodoLists from "./modules/FSTodoLists";
+import UserData from "./modules/FSTodoLists";
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store<any>({
     modules: {
-        fsLists: FSTodoLists
+        fsLists: FSTodoLists,
+        userData: UserData
     },
     state: {
         userInfo: null
