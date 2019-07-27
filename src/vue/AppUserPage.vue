@@ -10,10 +10,6 @@
                     :to="{name: 'list', params: {id: i.id}}"
                     class="list-item">{{i.name}}</router-link>
             </div>
-            <link-box id="link-box"
-                      class="list-item" 
-                      placeholder="New list name"
-                      @confirm-linkbox="newListHandler">New Item</link-box>
         </div>
     </div>
 </template>
@@ -33,23 +29,21 @@
 
 <script lang="ts">
 import Vue from "vue"
-import {TodoListDocument} from "../store/Models";
-import LinkBox from "./LinkBox.vue"
+import RoutineDocument from "../store/models/Routine";
 import { collections } from "../script/Firebase";
 
 export default Vue.extend({
     components: {
-        "link-box": LinkBox
     },
     methods: {
         newListHandler(name: string) {
-            TodoListDocument.createDocument(collections.lists, name, this.$store.getters.uid)
+            /*RoutineDocument.createDocument(collections.lists, name, this.$store.getters.uid)
                 .then(v => {
                     this.$router.push({name: "editList", params: {id: v.id}});
                 })
                 .catch(reason => 
                    console.error("[AppUserPage] Could not create new list: " + reason)
-                )
+                )*/
         }
     }
 })
