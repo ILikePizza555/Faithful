@@ -1,6 +1,7 @@
 import Vue from "vue";
 import {firestore} from "firebase";
-import {TodoListDocument, TodoListItem} from "../Models";
+import RoutineDocument from "../models/Routine";
+import {Modification as RoutineItemModification} from "../models/RoutineItems";
 import { Module } from "vuex";
 import { collections } from "../../script/Firebase";
 
@@ -9,7 +10,7 @@ export namespace Mutations {
     export const updateTodoItem = "updateTodoItem";
 }
 interface FSRoutinesState {
-    userTodoLists: {[id: string]: TodoListDocument};
+    userTodoLists: {[id: string]: RoutineDocument};
 }
 
 export const FSRoutines: Module<FSRoutinesState, any> = {
@@ -35,14 +36,14 @@ export const FSRoutines: Module<FSRoutinesState, any> = {
             
             //Have to follow Vue's reactivity rules. Meaning we can't add new fields normally.
             if(docChange.type == "added" || docChange.type == "modified") {
-                Vue.set(state.userTodoLists, docId, new TodoListDocument(docChange.doc));
+                Vue.set(state.userTodoLists, docId, new RoutineDocument(docChange.doc));
             } else if(docChange.type == "removed") {
                 Vue.delete(state.userTodoLists, docId);
             }
         },
-        [Mutations.updateTodoItem](state: FSRoutinesState, itemChange: TodoListItem.Modification) {
-            const tdList = state.userTodoLists[itemChange.todoListId];
-            if(!tdList) { throw new Error("[mutation:updateTodoItem] Invalid list id: " + itemChange.todoListId); }
+        [Mutations.updateTodoItem](state: FSRoutinesState, itemChange: RoutineItemModification) {
+            const tdList = state.userTodoLists[itemChange.routineId];
+            if(!tdList) { throw new Error("[mutation:updateTodoItem] Invalid list id: " + itemChange.routineId); }
 
             if(itemChange.type == "add") {
                 tdList.items.push(itemChange.change);
@@ -61,7 +62,7 @@ export const FSRoutines: Module<FSRoutinesState, any> = {
     },
     actions: {
         saveList(context, id: string) {
-            const list: TodoListDocument = context.getters.listById(id);
+            const list: RoutineDocument = context.getters.listById(id);
             return list.updateDocument(collections.routines);
         }
     }

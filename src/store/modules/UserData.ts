@@ -1,6 +1,6 @@
 import Vue from "vue";
 import {firebase, collections} from "../../script/Firebase";
-import {UserProfile} from "../Models";
+import UserProfile from "../models/UserProfile";
 import {Module} from "vuex";
 
 export namespace Mutations {
