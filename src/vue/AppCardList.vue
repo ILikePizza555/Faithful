@@ -1,14 +1,11 @@
 <template>
     <div id="app-card-list" 
-         class="full-page-container"
-         :style="currentStyle">
+         class="full-page-container">
         <app-bar 
             :title="activeModel.name"
             :modelId="id"
             @app-back="$router.push('/')"></app-bar>
         <card-list
-            v-on:update-activeitem="itemUpdateHandler($event)"
-            v-on:update-viewingitem="itemUpdateHandler($event)"
             :model="activeModel"></card-list>
     </div>
 </template>
@@ -24,21 +21,17 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import {Prop} from "vue/types/options";
-import {TodoListDocument, TodoListItem} from "../store/Models";
-import CardList, {UpdateActiveItemEvent} from "./CardList.vue";
+import RoutineDocument from "../store/models/Routine";
+import CardList from "./CardList.vue";
 import TheAppBar from "./TheAppBar.vue";
-import {fromHex} from "../script/Color";
 
 /**
  * The type of of an instance of this Vue component.
  * Used for `this`-typing in methods and computed properties
  */
 interface AppCardList extends Vue {
-    currentIndex: number;
     id: string;
-    currentStyle: {[name: string]: string | number};
-    activeModel: TodoListDocument;
+    activeModel: RoutineDocument;
 }
 
 export default Vue.extend({
@@ -54,32 +47,11 @@ export default Vue.extend({
         }
     },
     computed: {
-        // NOTE: The `this` parameter is used by Typescript for type-checking. It is removed on compilation.
-        currentStyle: function(this: AppCardList): object {
-            // Check for the case where we are on the end card
-            if(this.currentIndex == this.activeModel.items.length || !this.activeModel.items[this.currentIndex].background) {
-                return {
-                    "backgroundColor": "fff9f4",
-                    "color": "#212121"
-                };
-            }
-
-            const i: TodoListItem.TodoListItem = this.activeModel.items[this.currentIndex];
-            const color = fromHex(i.background.color);
-
-            return {
-                "backgroundColor": i.background.color,
-                "color": color.luminance > (150 / 255) ? "#212121" : "#ffffff"
-            }
-        },
         activeModel(this: AppCardList) {
             return this.$store.getters.listById(this.id)
         }
     },
     methods: {
-        itemUpdateHandler: function(itemIndex: number) {
-            this.currentIndex = itemIndex;
-        }
     },
     components: {
         "card-list": CardList,
