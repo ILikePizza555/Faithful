@@ -46,11 +46,13 @@ export const UserData: Module<UserDataState, any> = {
                 return;
             }
 
-            collections.userInfo.doc(state.currentUser.uid).get().then(res => {
-                commit(Mutations.setUserProfile, res.data());
-            }).catch(err => {
-                console.error("[vuex;actions;fetchUserProfile] " + err);
-            })
+            UserProfile
+                .loadFromDocument(collections.userInfo.doc(state.currentUser.uid))
+                .then(up => {
+                    commit(Mutations.setUserProfile, up);
+                }).catch(err => {
+                    console.error("[vuex;actions;fetchUserProfile] " + err);
+                })
         }
     },
     mutations: {
