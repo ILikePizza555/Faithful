@@ -56,3 +56,4 @@ export class RoutineDocument {
         });
     }
 }
+export default RoutineDocument;

@@ -39,3 +39,4 @@ export interface ChangeModifications {
 }
 
 export type Modification = AddModification | RemoveModification | ChangeModifications;
+export default RoutineItem;

@@ -10,3 +10,5 @@ export class UserProfile {
         return new UserProfile();
     }
 }
+
+export default UserProfile;
