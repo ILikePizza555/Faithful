@@ -19,6 +19,6 @@ export type FQuerySnap = firebase.firestore.QuerySnapshot;
 
 export const firestore = firebase.firestore();
 export const collections = {
-    lists: firestore.collection("lists"),
+    routines: firestore.collection("routines"),
     userInfo: firestore.collection("user_info")
 }
