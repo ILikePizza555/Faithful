@@ -94,7 +94,8 @@ module.exports = {
     devServer: {
         historyApiFallback: {
             rewrites: [
-                {from: /^\/app\/?.*$/, to: "/app.html"}
+                {from: "^\/.*\/main.js", to: "/main.js"},
+                {from: "^\/?.*$", to: "/"}
             ]
         }
     }
