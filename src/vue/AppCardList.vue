@@ -1,11 +1,13 @@
 <template>
     <div id="app-card-list" 
          class="full-page-container">
-        <app-bar 
+        <app-bar
+            style="flex: 0 0 auto"
             :title="activeModel.name"
             :modelId="id"
             @app-back="$router.push('/')"></app-bar>
         <card-list
+            style="flex-grow: 1"
             :model="activeModel"></card-list>
     </div>
 </template>
@@ -14,8 +16,8 @@
 @import "../sass/common";
 
 #app-card-list {
-     transition: background-color 1s ease 0.3s, 
-                 color 1s ease 0.3s;
+    display: flex;
+    flex-direction: column;
 }
 </style>
 

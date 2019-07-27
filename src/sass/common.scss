@@ -42,10 +42,6 @@ body {
     height: 100%;
 }
 
-.viewport {
-    height: calc(100vh - #{$appbar-height})
-}
-
 .block-container {
     display: flex;
 }
