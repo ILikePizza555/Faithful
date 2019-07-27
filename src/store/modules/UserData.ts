@@ -54,11 +54,11 @@ export const UserData: Module<UserDataState, any> = {
         }
     },
     mutations: {
-        [Mutations.setCurrentUser]: function(state, payload) {
+        [Mutations.setCurrentUser] (state, payload) {
             //TODO: data checking
             state.currentUser = payload;
         },
-        [Mutations.setUserProfile]: function(state, payload) {
+        [Mutations.setUserProfile] (state, payload) {
             state.userProfile = payload;
         }
     }

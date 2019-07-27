@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import FSRoutines from "./modules/FSRoutines";
-import UserData from "./modules/FSRoutines";
+import {FSRoutines} from "./modules/FSRoutines";
+import {UserData} from "./modules/UserData";
 
 Vue.use(Vuex);
 
