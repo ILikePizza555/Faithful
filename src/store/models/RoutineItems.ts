@@ -2,9 +2,7 @@ export interface RoutineItem {
     readonly id: number;
     title: string;
     desc?: string;
-    background: {
-        color: string;
-    };
+    backgroundColor: string;
 }
 
 /**
