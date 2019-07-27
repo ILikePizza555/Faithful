@@ -1,7 +1,7 @@
 <template lang="pug">
-    main.card-list-container.center
+    div.card-list-container.center
         card-vue(v-for="item in model.items" 
-                 :id="item.id" 
+                 :key="item.id" 
                  :title="item.title" 
                  :description="item.description"
                  :backgroundColor="item.backgroundColor")
